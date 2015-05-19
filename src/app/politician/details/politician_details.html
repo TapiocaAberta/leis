@@ -1,0 +1,22 @@
+<div ng-include src="'views/base/navbar-fixed.html'"></div>
+
+<section class="padding-from-top">
+    <div ng-model="politicians">
+    
+        <a href="#/details/{{prevItem}}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a href="#/details/{{nextItem}}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+
+        <h1>{{politicians[whichItem].NOME_URNA_CANDIDATO}}</h1>
+
+        <div>
+            <h3>{{politicians[whichItem].NOME_PARTIDO}}</h3>
+            <img ng-src="{{politicians[whichItem].FOTO}}" alt="Photo of {{politicians[whichItem].name}}">
+
+            <div>{{politicians[whichItem].DESCRICAO_GRAU_INSTRUCAO}}</div>
+        </div>
+
+        <div ng-include src="'views/base/timeline.html'"></div>
+
+    </div>
+    <a href="#/politicos">&laquo; Voltar</a>
+</section>
