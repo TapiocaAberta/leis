@@ -41,7 +41,7 @@ angular.module('lawsApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource',
 
             .state('lawDetails', {
                 url: '/leis/:itemId',
-                templateUrl: 'app/laws/details/laws_details.html',
+                templateUrl: 'app/laws/details/law_details.html',
                 controller: 'LawDetailsController'
             });
 

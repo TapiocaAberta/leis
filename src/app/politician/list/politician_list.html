@@ -1,23 +1,35 @@
-<div ng-include src="'views/base/navbar-fixed.html'"></div>
+<div>
 
-<section>
+    <md-content>
+        <header ng-include="'app/components/navbar/navbar.html'"></header>
 
-    <div>
-        <h1>Politician Directory</h1>
-    </div>
 
-    <div class="slide-animate" ng-include src="'views/base/facebook.html'"></div>
+        <section>
 
-    <label>Pesquise: </label>
-    <input ng-model="query" placeholder="Procure pelos vereadores" autofocus>
+            <div>
+                <h1>Politician Directory</h1>
+            </div>
 
-    <div ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
-        <a href="#/politicos/{{politicians.indexOf(item)}}">
-            <img ng-src="{{ item.FOTO }}" class="md-card-image" alt="Photo of {{item.name}}">
-            {{ item.NOME_URNA_CANDIDATO.toLowerCase() }}
-            </br>
-            {{ item.NOME_PARTIDO }}
-        </a>
-    </div>
+            <div class="slide-animate" ng-include src="'views/base/facebook.html'"></div>
 
-</section>
+            <label>Pesquise: </label>
+            <input ng-model="query" placeholder="Procure pelos vereadores" autofocus>
+
+            <div ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
+                <a href="/politicos/{{politicians.indexOf(item)}}">
+                    <img ng-src="{{ item.FOTO }}" class="md-card-image" alt="Photo of {{item.name}}">
+                    {{ item.NOME_URNA_CANDIDATO.toLowerCase() }}
+                    </br>
+                    {{ item.NOME_PARTIDO }}
+                </a>
+            </div>
+
+        </section>
+
+        <footer>
+            <md-toolbar layout="row" layout-align="center center">
+                <p>With ♥ from <a href="https://github.com/transparenciasjc">@TranparênciaSJC</a></p>
+            </md-toolbar>
+        </footer>
+    </md-content>
+</div>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lawsApp')
-    .controller('LawListController',
+    .controller('LawDetailsController',
     function ($scope, $http, $stateParams) {
         $http.get('data/laws.json').success(function (data) {
             $scope.laws = data;

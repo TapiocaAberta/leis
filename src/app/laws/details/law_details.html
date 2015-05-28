@@ -5,22 +5,23 @@
 
         <section>
             <div ng-model="laws">
-                <a href="#/leis/{{prevItem}}">&lt;</a>
-                <a href="#/leis/{{nextItem}}">&gt;</a>
+                <a href="/leis/{{prevItem}}">&lt;</a>
+                <a href="/leis/{{nextItem}}">&gt;</a>
 
                 <h1>{{ law.author }}</h1>
 
                 <div>
                     <h3>{{ law.name }}</h3>
-
                     <h3>{{ law.date.plain }}</h3>
-
                     <div>{{ law.description }}</div>
+                    </br>
+                    </br>
+                    <div>{{ law.completeBody }}</div>
 
-                    <div id="lawCompleteBody" ng-bind-html="law.completeBody | markdown"></div>
+                    <!-- <div id="lawCompleteBody" ng-bind-html="law.completeBody | markdown"></div> -->
                 </div>
             </div>
-            <a href="#/leis">&laquo; Voltar para leis</a>
+            <a href="/leis">&laquo; Voltar para leis</a>
         </section>
 
         <footer>
