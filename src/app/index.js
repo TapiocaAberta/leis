@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lawsApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ui.router', 'ngMaterial'])
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $stateProvider
             .state('home', {
                 url: '/',
@@ -33,6 +33,7 @@ angular.module('lawsApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource',
                 controller: 'LawDetailsController'
             });
 
+        $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
     })
 ;
