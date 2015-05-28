@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('lawsApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ui.router', 'ngMaterial'])
+angular.module('lawsApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ui.router', 'ngMaterial', 'markdown'])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
         $urlRouterProvider.rule(function ($injector, $location) {

@@ -12,13 +12,14 @@
 
                 <div>
                     <h3>{{ law.name }}</h3>
+
                     <h3>{{ law.date.plain }}</h3>
+
                     <div>{{ law.description }}</div>
                     </br>
                     </br>
-                    <div>{{ law.completeBody }}</div>
 
-                    <!-- <div id="lawCompleteBody" ng-bind-html="law.completeBody | markdown"></div> -->
+                    <div id="lawCompleteBody" ng-bind-html="law.completeBody | markdown"></div>
                 </div>
             </div>
             <a href="/leis">&laquo; Voltar para leis</a>
