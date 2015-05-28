@@ -1,23 +1,24 @@
 'use strict';
 
-var politicianControllers = angular.module('politicianControllers', []);
+angular.module('lawsApp')
+    .controller(
+    'PoliticianDetailsController',
+    function ($scope, $http, $stateParams) {
+        $http.get('data/vereadores.json').success(function (data) {
+            $scope.politicians = data;
+            $scope.whichItem = $stateParams.itemId;
 
-politicianControllers.controller('PoliticianDetailsController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-    $http.get('data/vereadores.json').success(function (data) {
-        $scope.politicians = data;
-        $scope.whichItem = $routeParams.itemId;
+            if ($stateParams.itemId > 0) {
+                $scope.prevItem = Number($stateParams.itemId) - 1;
+            } else {
+                $scope.prevItem = $scope.politicians.length - 1;
+            }
 
-        if ($routeParams.itemId > 0) {
-            $scope.prevItem = Number($routeParams.itemId) - 1;
-        } else {
-            $scope.prevItem = $scope.politicians.length - 1;
-        }
-
-        if ($routeParams.itemId < $scope.politicians.length - 1) {
-            $scope.nextItem = Number($routeParams.itemId) + 1;
-        } else {
-            $scope.nextItem = 0;
-        }
-
-    });
-}]);
+            if ($stateParams.itemId < $scope.politicians.length - 1) {
+                $scope.nextItem = Number($stateParams.itemId) + 1;
+            } else {
+                $scope.nextItem = 0;
+            }
+        });
+    }
+);

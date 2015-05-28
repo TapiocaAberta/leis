@@ -1,23 +1,23 @@
 'use strict';
 
-var lawControllers = angular.module('lawControllers', []);
+angular.module('lawsApp')
+    .controller('LawListController',
+    function ($scope, $http, $stateParams) {
+        $http.get('data/laws.json').success(function (data) {
+            $scope.laws = data;
+            $scope.law = data[$stateParams.itemId];
 
-lawControllers.controller('LawDetailsController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-    $http.get('data/laws.json').success(function (data) {
-        $scope.laws = data;
-        $scope.law = data[$routeParams.itemId];
+            if ($stateParams.itemId > 0) {
+                $scope.prevItem = Number($stateParams.itemId) - 1;
+            } else {
+                $scope.prevItem = $scope.laws.length - 1;
+            }
 
-        if ($routeParams.itemId > 0) {
-            $scope.prevItem = Number($routeParams.itemId) - 1;
-        } else {
-            $scope.prevItem = $scope.laws.length - 1;
-        }
-
-        if ($routeParams.itemId < $scope.laws.length - 1) {
-            $scope.nextItem = Number($routeParams.itemId) + 1;
-        } else {
-            $scope.nextItem = 0;
-        }
-
-    });
-}]);
+            if ($stateParams.itemId < $scope.laws.length - 1) {
+                $scope.nextItem = Number($stateParams.itemId) + 1;
+            } else {
+                $scope.nextItem = 0;
+            }
+        });
+    }
+);

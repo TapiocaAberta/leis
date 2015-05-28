@@ -1,6 +1,6 @@
 <div ng-include src="'views/base/navbar-fixed.html'"></div>
 
-<section class="padding-from-top">
+<section>
 
     <div>
         <h1>Politician Directory</h1>
@@ -8,50 +8,16 @@
 
     <div class="slide-animate" ng-include src="'views/base/facebook.html'"></div>
 
-    <div>
+    <label>Pesquise: </label>
+    <input ng-model="query" placeholder="Procure pelos vereadores" autofocus>
 
-        <label>Pesquise: </label>
-        <input ng-model="query" placeholder="Procure pelos vereadores" autofocus>
-
-
-        <!--
-                <label class="formgroup">by:
-                    <select ng-model="politicianOrder">
-                        <option value="name">Name</option>
-                        <option value="reknown">Partido</option>
-                    </select>
-                </label>
-
-                <label class="formgroup">
-                    <input type="radio" ng-model="direction" name="direction" checked>
-                    ascending
-                </label>
-                <label class="formgroup">
-                    <input type="radio" ng-model="direction" name="direction" value="reverse">
-                    descending
-                </label>
-        -->
-
-    </div>
-
-    <br>
-
-    <div class="row">
-        <div class="col-sm-6 col-md-4"
-             ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
-            <a href="#/politicos/{{politicians.indexOf(item)}}">
-                <div class="thumbnail" style="height: 400px;">
-                    <img class="featurette-image img-responsive img-thumbnail" ng-src="{{ item.FOTO }}"
-                         alt="Photo of {{item.name}}">
-
-                    <div class="caption">
-                        <h3 style="text-transform:capitalize;"> {{ item.NOME_URNA_CANDIDATO.toLowerCase() }} </h3>
-
-                        <p>{{ item.NOME_PARTIDO }}</p>
-                    </div>
-                </div>
-            </a>
-        </div>
+    <div ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
+        <a href="#/politicos/{{politicians.indexOf(item)}}">
+            <img ng-src="{{ item.FOTO }}" class="md-card-image" alt="Photo of {{item.name}}">
+            {{ item.NOME_URNA_CANDIDATO.toLowerCase() }}
+            </br>
+            {{ item.NOME_PARTIDO }}
+        </a>
     </div>
 
 </section>

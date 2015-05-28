@@ -1,21 +1,32 @@
-<div ng-include src="'views/base/navbar-fixed.html'"></div>
+<div>
 
-<section class="padding-from-top">
-    <div ng-model="laws">
-        <a href="#/leis/{{prevItem}}">&lt;</a>
-        <a href="#/leis/{{nextItem}}">&gt;</a>
+    <md-content>
+        <header ng-include="'app/components/navbar/navbar.html'"></header>
 
-        <h1>{{ law.author }}</h1>
+        <section>
+            <div ng-model="laws">
+                <a href="#/leis/{{prevItem}}">&lt;</a>
+                <a href="#/leis/{{nextItem}}">&gt;</a>
 
-        <div>
-            <h3>{{ law.name }}</h3>
+                <h1>{{ law.author }}</h1>
 
-            <h3>{{ law.date.plain }}</h3>
+                <div>
+                    <h3>{{ law.name }}</h3>
 
-            <div>{{ law.description }}</div>
+                    <h3>{{ law.date.plain }}</h3>
 
-            <div id="lawCompleteBody" ng-bind-html="law.completeBody | markdown"></div>
-        </div>
-    </div>
-    <a href="#/leis">&laquo; Voltar para leis</a>
-</section>
+                    <div>{{ law.description }}</div>
+
+                    <div id="lawCompleteBody" ng-bind-html="law.completeBody | markdown"></div>
+                </div>
+            </div>
+            <a href="#/leis">&laquo; Voltar para leis</a>
+        </section>
+
+        <footer>
+            <md-toolbar layout="row" layout-align="center center">
+                <p>With ♥ from <a href="https://github.com/transparenciasjc">@TranparênciaSJC</a></p>
+            </md-toolbar>
+        </footer>
+    </md-content>
+</div>
