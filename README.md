@@ -15,12 +15,12 @@ Angular application to show all law-projects approved by the government of São 
 Make sure these are installed first.
 
 * [Node.js](http://nodejs.org)
-* [Gulp](http://gulpjs.com) `sudo npm install -g gulp`
+* [Gulp](http://gulpjs.com) 
 
 ### Quick Start
 
 1. In bash/terminal/command line, `cd` into your project directory.
-2. Run `npm install` to install required files.
+2. Run `npm install -g yo bower grunt-cli gulp && npm install && bower install` to install required dependencies.
 3. When it's done installing, run one of the task runners to get going:
 
 ## Gulp tasks
