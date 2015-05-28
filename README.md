@@ -1,3 +1,4 @@
+## Leis SJC [![Build Status](https://travis-ci.org/transparenciasjc/leis.svg)](https://travis-ci.org/transparenciasjc/leis)
 
 ### Use Gulp tasks
 
