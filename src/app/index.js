@@ -2,6 +2,7 @@
 
 angular.module('lawsApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ui.router', 'ngMaterial', 'markdown'])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+        var base_path = "";
 
         $urlRouterProvider.rule(function ($injector, $location) {
             var path = $location.path();
@@ -9,8 +10,8 @@ angular.module('lawsApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource',
 
             if (hasTrailingSlash) {
                 //if last charcter is a slash, return the same url without the slash  
-                var newPath = path.substr(0, path.length - 1);
-                return newPath;
+                base_path = path.substr(0, path.length - 1);
+                return base_path;
             }
         });
 
@@ -22,25 +23,25 @@ angular.module('lawsApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource',
             })
 
             .state('politicianList', {
-                url: '/politicos',
+                url: base_path + '/politicos',
                 templateUrl: 'app/politician/list/politician_list.html',
                 controller: 'PoliticianListController'
             })
 
             .state('politicianDetails', {
-                url: '/politicos/:itemId',
+                url: base_path + '/politicos/:itemId',
                 templateUrl: 'app/politician/details/politician_details.html',
                 controller: 'PoliticianDetailsController'
             })
 
             .state('lawList', {
-                url: '/leis',
+                url: base_path + '/leis',
                 templateUrl: 'app/laws/list/laws_list.html',
                 controller: 'LawListController'
             })
 
             .state('lawDetails', {
-                url: '/leis/:itemId',
+                url: base_path + '/leis/:itemId',
                 templateUrl: 'app/laws/details/law_details.html',
                 controller: 'LawDetailsController'
             });
