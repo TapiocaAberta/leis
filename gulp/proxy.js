@@ -27,7 +27,7 @@ var proxy = httpProxy.createProxyServer({
     target: proxyTarget
 });
 
-proxy.on('error', function (error, req, res) {
+proxy.on('error', function(error, req, res) {
     res.writeHead(500, {
         'Content-Type': 'text/plain'
     });
@@ -62,6 +62,6 @@ function proxyMiddleware(req, res, next) {
  */
 
 //module.exports = [proxyMiddleware];
-module.exports = function () {
+module.exports = function() {
     return [];
 };

@@ -8,7 +8,7 @@ var util = require('util');
 
 var middleware = require('./proxy');
 
-module.exports = function (options) {
+module.exports = function(options) {
 
     function browserSyncInit(baseDir, browser) {
         browser = browser === undefined ? 'default' : browser;
@@ -37,22 +37,22 @@ module.exports = function (options) {
     }
 
     browserSync.use(browserSyncSpa({
-        selector: '[ng-app]'// Only needed for angular apps
+        selector: '[ng-app]' // Only needed for angular apps
     }));
 
-    gulp.task('serve', ['watch'], function () {
+    gulp.task('serve', ['watch'], function() {
         browserSyncInit([options.tmp + '/serve', options.src]);
     });
 
-    gulp.task('serve:dist', ['build'], function () {
+    gulp.task('serve:dist', ['build'], function() {
         browserSyncInit(options.dist);
     });
 
-    gulp.task('serve:e2e', ['inject'], function () {
+    gulp.task('serve:e2e', ['inject'], function() {
         browserSyncInit([options.tmp + '/serve', options.src], []);
     });
 
-    gulp.task('serve:e2e-dist', ['build'], function () {
+    gulp.task('serve:e2e-dist', ['build'], function() {
         browserSyncInit(options.dist, []);
     });
 };

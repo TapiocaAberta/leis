@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('lawsApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ui.router', 'ngMaterial', 'markdown'])
-    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-        $urlRouterProvider.rule(function ($injector, $location) {
+    .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+        $urlRouterProvider.rule(function($injector, $location) {
             var path = $location.path();
             var hasTrailingSlash = path[path.length - 1] === '/';
 
@@ -20,31 +20,30 @@ angular.module('lawsApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource',
                 controller: 'MainCtrl'
             })
 
-            .state('politicianList', {
-                url: '/politicos',
-                templateUrl: 'app/politician/list/politician_list.html',
-                controller: 'PoliticianListController'
-            })
+        .state('politicianList', {
+            url: '/politicos',
+            templateUrl: 'app/politician/list/politician_list.html',
+            controller: 'PoliticianListController'
+        })
 
-            .state('politicianDetails', {
-                url: '/politicos/:itemId',
-                templateUrl: 'app/politician/details/politician_details.html',
-                controller: 'PoliticianDetailsController'
-            })
+        .state('politicianDetails', {
+            url: '/politicos/:itemId',
+            templateUrl: 'app/politician/details/politician_details.html',
+            controller: 'PoliticianDetailsController'
+        })
 
-            .state('lawList', {
-                url: '/leis',
-                templateUrl: 'app/laws/list/laws_list.html',
-                controller: 'LawListController'
-            })
+        .state('lawList', {
+            url: '/leis',
+            templateUrl: 'app/laws/list/laws_list.html',
+            controller: 'LawListController'
+        })
 
-            .state('lawDetails', {
-                url: '/leis/:itemId',
-                templateUrl: 'app/laws/details/law_details.html',
-                controller: 'LawDetailsController'
-            });
+        .state('lawDetails', {
+            url: '/leis/:itemId',
+            templateUrl: 'app/laws/details/law_details.html',
+            controller: 'LawDetailsController'
+        });
 
         //$locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
-    })
-;
+    });

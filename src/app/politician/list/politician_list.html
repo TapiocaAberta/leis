@@ -17,8 +17,7 @@
 
             <div ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
                 <a href="#/politicos/{{politicians.indexOf(item)}}">
-                    <img ng-src="{{ item.FOTO }}" class="md-card-image" alt="Photo of {{item.name}}">
-                    {{ item.NOME_URNA_CANDIDATO.toLowerCase() }}
+                    <img ng-src="{{ item.FOTO }}" class="md-card-image" alt="Photo of {{item.name}}"> {{ item.NOME_URNA_CANDIDATO.toLowerCase() }}
                     </br>
                     {{ item.NOME_PARTIDO }}
                 </a>

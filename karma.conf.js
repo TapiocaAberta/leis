@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (config) {
+module.exports = function(config) {
 
     var configuration = {
         autoWatch: false,
