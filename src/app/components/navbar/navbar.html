@@ -1,10 +1,21 @@
-<md-toolbar layout="row" layout-align="center center" ng-controller="NavbarCtrl">
+<nav class="navbar navbar-static-top navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="https://github.com/Swiip/generator-gulp-angular">
+                <span class="glyphicon glyphicon-home"></span> Gulp Angular
+            </a>
+        </div>
 
-    <md-button href="#/">SJC Leis</md-button>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+            <ul class="nav navbar-nav">
+                <li class="active"><a ng-href="#">Home</a></li>
+                <li><a ng-href="#">About</a></li>
+                <li><a ng-href="#">Contact</a></li>
+            </ul>
 
-    <section flex layout="row" layout-align="left center">
-        <md-button href="#/leis" class="md-raised">Leis</md-button>
-        <md-button href="#/politicos" class="md-raised">Politicos</md-button>
-    </section>
-
-</md-toolbar>
+            <ul class="nav navbar-nav navbar-right acme-navbar-text">
+                <li>Application was created {{ vm.relativeDate }}.</li>
+            </ul>
+        </div>
+    </div>
+</nav>

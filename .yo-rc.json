@@ -1,14 +1,17 @@
 {
     "generator-gulp-angular": {
-        "version": "0.11.0",
+        "version": "0.12.1",
         "props": {
-            "angularVersion": "~1.3.4",
+            "angularVersion": "~1.4.0",
             "angularModules": [{
                 "key": "animate",
                 "module": "ngAnimate"
             }, {
                 "key": "cookies",
                 "module": "ngCookies"
+            }, {
+                "key": "touch",
+                "module": "ngTouch"
             }, {
                 "key": "sanitize",
                 "module": "ngSanitize"
@@ -25,8 +28,12 @@
                 "module": "ui.router"
             },
             "ui": {
-                "key": "angular-material",
-                "module": "ngMaterial"
+                "key": "bootstrap",
+                "module": null
+            },
+            "bootstrapComponents": {
+                "key": "ui-bootstrap",
+                "module": "ui.bootstrap"
             },
             "cssPreprocessor": {
                 "key": "node-sass",
@@ -40,12 +47,6 @@
             "htmlPreprocessor": {
                 "key": "none",
                 "extension": "html"
-            },
-            "bootstrapComponents": {
-                "name": null,
-                "version": null,
-                "key": null,
-                "module": null
             },
             "foundationComponents": {
                 "name": null,
