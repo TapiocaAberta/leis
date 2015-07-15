@@ -1,3 +1,48 @@
 <div class="col-md-12">
-    This is the politician view.
+    <div class="container">
+        <header ng-include="'app/components/navbar/navbar.html'"></header>
+        <div>
+            <h2>Vereadores de São José dos Campos</h2>
+        </div>
+        <div class="slide-animate" ng-include src="'views/base/facebook.html'"></div>
+        <div class="well">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1">
+                <i class="glyphicon glyphicon-search"></i>
+                </span>
+                <input ng-model="query" placeholder="Procure pelos vereadores" autofocus type="text" class="form-control" aria-describedby="sizing-addon1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-4" ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
+                <div class="card hovercard">
+                    <div class="cardheader">
+                    </div>
+                    <div class="avatar">
+                        <img alt="Photo of {{item.name}}" ng-src="{{ item.FOTO }}">
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            <a href="#/politicos/{{politicians.indexOf(item)}}"> {{ item.NOME_URNA_CANDIDATO.toLowerCase() }}</a>
+                        </div>
+                        <div class="desc"> {{ item.NOME_PARTIDO }}</div>
+                    </div>
+                    <div class="bottom">
+                        <a class="btn btn-primary btn-twitter btn-sm" href="#">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-danger btn-sm" rel="publisher" href="#">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                        <a class="btn btn-primary btn-sm" rel="publisher" href="#">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn btn-warning btn-sm" rel="publisher" href="#">
+                            <i class="fa fa-behance"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
