@@ -1,6 +1,8 @@
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('lawsApp')
-    .controller('PoliticanDetailsCtrl', function($scope) {
-        $scope.message = 'Hello';
-    });
+    angular.module('lawsApp')
+        .controller('PoliticanDetailsCtrl', function($scope) {
+            $scope.message = 'Hello';
+        });
+})();

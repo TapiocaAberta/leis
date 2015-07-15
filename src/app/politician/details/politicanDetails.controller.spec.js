@@ -1,21 +1,24 @@
-'use strict';
+(function() {
+    'use strict';
 
-describe('Controller: PoliticanDetailsCtrl', function() {
+    describe('Controller: PoliticanDetailsCtrl', function() {
 
-    // load the controller's module
-    beforeEach(module('lawsApp'));
+        // load the controller's module
+        beforeEach(module('lawsApp'));
 
-    var PoliticanDetailsCtrl, scope;
+        var PoliticanDetailsCtrl, scope;
 
-    // Initialize the controller and a mock scope
-    beforeEach(inject(function($controller, $rootScope) {
-        scope = $rootScope.$new();
-        PoliticanDetailsCtrl = $controller('PoliticanDetailsCtrl', {
-            $scope: scope
+        // Initialize the controller and a mock scope
+        beforeEach(inject(function($controller, $rootScope) {
+            scope = $rootScope.$new();
+            PoliticanDetailsCtrl = $controller('PoliticanDetailsCtrl', {
+                $scope: scope
+            });
+        }));
+
+        it('should ...', function() {
+            expect(1).toEqual(1);
         });
-    }));
-
-    it('should ...', function() {
-        expect(1).toEqual(1);
     });
-});
+
+})();
