@@ -1,3 +1,15 @@
-<div class="col-md-12">
-    This is the lawDetails view.
+<header ng-include="'app/components/navbar/navbar.html'"></header>
+<div class="container backgroundBlue" ng-model="laws">
+    <a href="#/leis/{{prevItem}}">&lt; Anterior </a>
+    <a href="#/leis/{{nextItem}}">Próximo &gt;</a>
+    <h1>{{ law.author }}</h1>
+    <div>
+        <h3>{{ law.name }}</h3>
+        <h3>{{ law.date.plain }}</h3>
+        <div>{{ law.description }}</div>
+        <div id="lawCompleteBody" ng-bind-html="law.completeBody | markdown"></div>
+    </div>
 </div>
+<center>
+    <a href="#/leis">&laquo; Voltar</a>
+</center>
