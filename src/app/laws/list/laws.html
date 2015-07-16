@@ -1,3 +1,29 @@
 <div class="col-md-12">
-    This is the laws view.
+    <div class="container">
+        <header ng-include="'app/components/navbar/navbar.html'"></header>
+        <div>
+            <h2>Listagem de leis</h2>
+        </div>
+        <!-- <div class="slide-animate" ng-include src="'views/base/facebook.html'"></div> -->
+        <div class="well">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1">
+                <i class="glyphicon glyphicon-search"></i>
+                </span>
+                <input ng-model="query" placeholder="Pesquise por leis" autofocus type="text" class="form-control" aria-describedby="sizing-addon1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4" ng-repeat="item in laws | filter: query | orderBy: lawOrder:direction" style="height: 300px;">
+                <a class="thumbnail" href="#/leis/{{laws.indexOf(item)}}">
+                    <div class="caption">
+                        <h3 style="text-transform:capitalize;">{{ item.lawId }}</h3>
+                        <p>{{ item.description }}</p>
+                        <p><strong>{{ item.author }}</strong></p>
+                        <p><strong>{{ item.date.plain }}</strong></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
