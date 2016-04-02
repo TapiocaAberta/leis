@@ -78,6 +78,5 @@ for link in linkVereadores:
 
 # save the resulting JSON
 new_json =  json.dumps(jsonVereadores, indent=4, sort_keys=True, ensure_ascii=False, encoding='utf8')
-print new_json
 with io.open(JSON_VEREADORES,'w',encoding='utf8') as f:
     f.write(new_json)
