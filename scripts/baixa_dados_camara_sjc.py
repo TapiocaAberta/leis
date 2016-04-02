@@ -12,7 +12,7 @@ XPATH_DADOS_PESSOAIS = '//*[@id="conteudo-principal"]/div[2]/div/div[2]/ul/li[1]
 XPATH_EMAIL = '//*[@id="conteudo-principal"]/div[2]/div/div[2]/ul/li[2]/a/text()'
 XPATH_TELEFONE = '//*[@id="conteudo-principal"]/div[2]/div/div[2]/ul/li[3]/text()'
 XPATH_LOCAL_TRABALHO = '//*[@id="conteudo-principal"]/div[2]/div/div[2]/ul/li[4]/text()'
-XPATH_RESUMO = '//*[@id="conteudo-principal"]/div[2]/div/div[4]/p/text()'
+XPATH_RESUMO = '//*[@id="conteudo-principal"]/div[2]/div/div[4]'
 CAMARA_PREFIX  = 'camara_' 
 
 def get_first(iterable, default=None):
@@ -67,12 +67,12 @@ for link in linkVereadores:
 		email = get_first(v_tree.xpath(XPATH_EMAIL))
 		telefone =get_first(v_tree.xpath(XPATH_TELEFONE))
 		local_trabalho = get_first(v_tree.xpath(XPATH_LOCAL_TRABALHO))
-		resumo = v_tree.xpath(XPATH_RESUMO)
+		resumo = get_first(v_tree.xpath(XPATH_RESUMO))
 		v_json[CAMARA_PREFIX + 'dados_pessoais'] = unicode('\n'.join(dados_pessoais))
 		v_json[CAMARA_PREFIX + 'email'] = unicode(email)
 		v_json[CAMARA_PREFIX + 'telefone'] = unicode(telefone)
 		v_json[CAMARA_PREFIX + 'local_trabalho'] = unicode(local_trabalho)
-		v_json[CAMARA_PREFIX + 'resumo'] = unicode('\n'.join(resumo))
+		v_json[CAMARA_PREFIX + 'resumo'] = unicode(clean_html(resumo).text_content())
 		# TODO open the vereador page and download the info 
 
 
