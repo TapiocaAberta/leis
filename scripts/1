@@ -1,20 +1,13 @@
 # -*- coding: utf-8 -*-
 from lxml import html
-import requests,unicodedata,json,shutil,io
+import requests,unicodedata,json
 
 # constants
-IMG_PATH = '../src/assets/images/vereadores/'
-IMG_NEW_PATH = '/assets/images/vereadores/'
 DATA = '../src/data/'
 URL_VEREADORES = 'http://www.camarasjc.sp.gov.br/vereadores/'
-EXPRESSION_IMG_VEREADORES = '//*[@id="conteudo-principal"]/div[2]/div/div[2]/div/a/img'
+EXPRESSION_LINK_VEREADORES = '//*[@id="conteudo-principal"]/div[2]/div/div[2]/div/a'
 JSON_VEREADORES = DATA + 'vereadores.json'
 
-def save_image(img):
-	response = requests.get(img.get('src'), stream=True)
-	with open(file_path, 'wb') as out_file:
-	    shutil.copyfileobj(response.raw, out_file)
-	    del response
 # to help match the congress page names with the tse json names
 def name_corrections(s):
 	if(s == u'AMÉLIA NAOMI'):
@@ -35,19 +28,19 @@ def name_corrections(s):
 		return u'WILLIS'
 	return s
 # open the vereadores files that contains the vereadores data
-with io.open(JSON_VEREADORES,'r',encoding='utf8') as f: #i    text = f.read()
-	s = unicode(f.read())	
-	jsonVereadores = json.loads(s)
-	
+fileVereadores = open(JSON_VEREADORES)
+jsonVereadores = json.loads(fileVereadores.read())
+fileVereadores.close()
+
 
 # open the vereadores page for scraping
 page = requests.get(URL_VEREADORES)
 tree = html.fromstring(page.content)
-imgVereadores = tree.xpath(EXPRESSION_IMG_VEREADORES)
+linkVereadores = tree.xpath(EXPRESSION_LINK_VEREADORES)
 
-# get the images info to download locally and to update the JSON
-for img in imgVereadores:
-	name = unicode(img.get('alt').upper())
+# will read each vereador  URL to open his personal page to download the data  
+for link in linkVereadores:
+	name = unicode(link.text.upper())
 	name = name_corrections(name)
 	v_json = None
 	for v in jsonVereadores:
@@ -56,13 +49,13 @@ for img in imgVereadores:
 	if(v_json is None):
 		print 'Not Found: ' + name
 	else:
-		print 'saving image for ' + name
-		img_name = str(v_json['SEQUENCIAL_CANDIDATO']) + '.jpg'
-		file_path = IMG_PATH + img_name 
-		save_image(img)		
-		v_json['FOTO'] = IMG_NEW_PATH + img_name
+		print 'processing... ' + name
+		# TODO open the vereador page and download the info 
 
-# save the resulting JSON
-new_json =  json.dumps(jsonVereadores, indent=4, sort_keys=True, ensure_ascii=False, encoding='utf8')
-with io.open(JSON_VEREADORES,'w',encoding='utf8') as f:
-    f.write(new_json)
+# saves the new JSON
+#new_json =  json.dumps(jsonVereadores, indent=4, sort_keys=True)
+#fileVereadores = open(JSON_VEREADORES, 'w')
+#fileVereadores.write(new_json)
+#fileVereadores.close()
+#/opt/projects/leis/src/assets/images/vereadores
+
