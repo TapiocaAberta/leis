@@ -7,7 +7,8 @@ Angular application to show all law-projects approved by the government of São 
 1. [Getting Started](#getting-started)
 2. [Gulp Tasks](#gulp-tasks)
 3. [File Structure](#file-structure)
-4. [License](#license)
+4. [Scripts](#scripts)
+5. [License](#license)
 
 ## Getting Started
 
@@ -112,6 +113,33 @@ The root directory generated for a app with name `gulpAngular` :
 ├──  package.json
 ├──  protractor.conf.js
 </pre>
+
+## Scripts
+
+### Installing
+
+* Install pip
+		
+		curl  https://bootstrap.pypa.io/get-pip.py | python
+
+* Install requirements
+
+		pip install -r scripts/requirements.txt
+
+
+### Usage
+
+If you are in a unix based system, just open a console and type one of the options below
+
+	scripts/baixa_dados_camara_sjc.py
+
+	scripts/baixa_foto_vereadores.py
+
+Otherwise (Windows):
+
+	python scripts/baixa_dados_camara_sjc.py
+
+	python scripts/baixa_foto_vereadores.py
 
 ## License
 
