@@ -17,7 +17,8 @@
         "animate.css": "~3.3.0",
         "angular": "~1.4.0",
         "fontawesome": "~4.3.0",
-        "angular-markdown-filter": "~1.2.0"
+        "angular-markdown-filter": "~1.2.0",
+		"angular-strap": "latest"
     },
     "devDependencies": {
         "angular-mocks": "~1.4.0"
