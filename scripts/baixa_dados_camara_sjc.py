@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 from lxml import html
 from lxml.html.clean import clean_html
 import requests,io,json
