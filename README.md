@@ -116,3 +116,4 @@ The root directory generated for a app with name `gulpAngular` :
 ## License
 
 Leis SJC is licensed under the [MIT License](http://gomakethings.com/mit/).
+
