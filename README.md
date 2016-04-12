@@ -1,5 +1,7 @@
 ## Leis SJC [![Build Status](https://travis-ci.org/transparenciasjc/leis.svg)](https://travis-ci.org/transparenciasjc/leis)
 
+[![Join the chat at https://gitter.im/transparenciasjc/leis](https://badges.gitter.im/transparenciasjc/leis.svg)](https://gitter.im/transparenciasjc/leis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Angular application to show all law-projects approved by the government of São José dos Campos.
 
 **In This Documentation**
