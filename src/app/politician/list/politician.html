@@ -14,35 +14,29 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-6 col-sm-4" ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
-                <div class="card hovercard">
-                    <div class="cardheader">
-                    </div>
-                    <div class="avatar">
-                        <img alt="Photo of {{item.name}}" ng-src="{{ item.FOTO }}">
-                    </div>
-                    <div class="info">
-                        <div class="title">
-                            <a href="#/politicos/{{politicians.indexOf(item)}}"> {{ item.NOME_URNA_CANDIDATO.toLowerCase() }}</a>
-                        </div>
-                        <div class="desc"> {{ item.NOME_PARTIDO }}</div>
-                    </div>
-                    <div class="bottom">
-                        <a class="btn btn-primary btn-twitter btn-sm" href="#">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm" rel="publisher" href="#">
-                            <i class="fa fa-google-plus"></i>
-                        </a>
-                        <a class="btn btn-primary btn-sm" rel="publisher" href="#">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                        <a class="btn btn-warning btn-sm" rel="publisher" href="#">
-                            <i class="fa fa-behance"></i>
-                        </a>
-                    </div>
-                </div>
+
+          <div class="col-xs-6 col-sm-4" ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
+            <div class="card hovercard">
+
+              <div class="cardheader"></div>
+
+              <div class="avatar">
+                  <img alt="Photo of {{ ::item.name }}" ng-src="{{ ::item.photo }}" ng-if="!item.notFound">
+                  <img alt="Photo of {{ ::item.name }}" ng-src="http://sjcdigital.github.io/balanco-municipios-sp/images/dados_abertos_sjc.jpg" ng-if="item.notFound">
+              </div>
+
+              <div class="info">
+                  <div class="title">
+                      <a href="#/leis/alderman/{{::item.name}}"> {{ ::item.name }}</a>
+                  </div>
+                  <div class="desc">
+                    {{ ::item.politicalParty }} </br>
+                    {{ ::item.email }}
+                  </div>
+              </div>
+
             </div>
+          </div>
         </div>
     </div>
 </div>
