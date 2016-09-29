@@ -5,7 +5,7 @@
         .config(function($stateProvider) {
             $stateProvider
                 .state('lawDetails', {
-                    url: '/leis/:itemId',
+                    url: '/leis/:code',
                     templateUrl: 'app/laws/details/lawDetails.html',
                     controller: 'LawDetailsCtrl'
                 });

@@ -3,22 +3,18 @@
 
     angular.module('lawsApp')
         .controller('LawDetailsCtrl', function($scope, $http, $stateParams) {
-            $http.get('data/laws.json').success(function(data) {
-                $scope.laws = data;
-                $scope.law = data[$stateParams.itemId];
 
-                if ($stateParams.itemId > 0) {
-                    $scope.prevItem = Number($stateParams.itemId) - 1;
-                } else {
-                    $scope.prevItem = $scope.laws.length - 1;
-                }
+          if ($stateParams.code) {
+          }
 
-                if ($stateParams.itemId < $scope.laws.length - 1) {
-                    $scope.nextItem = Number($stateParams.itemId) + 1;
-                } else {
-                    $scope.nextItem = 0;
-                }
+            $http.get('http://temis-server.herokuapp.com/api/laws/' + $stateParams.code)
+            .success(function(data) {
+                $scope.law = data;
+            })
+            .error(function (error) {
+              console.log(error);
             });
+
         })
         .filter('markdown', function($sce) {
             var converter = new Showdown.converter();
