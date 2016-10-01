@@ -28,5 +28,9 @@
 
           }
 
+          $scope.teste = function() {
+            console.log("adadadasdasdas");
+          };
+
         });
 })();
