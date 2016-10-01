@@ -28,7 +28,7 @@
 
           }
 
-          $scope.teste = function() {
+          $scope.myPagingFunction = function() {
             console.log("adadadasdasdas");
           };
 
