@@ -16,6 +16,7 @@
 
         <div class="row">
 
+          <!-- TODO: tem que criar essa função no controller -->
           <div infinite-scroll="$ctrl.myPagingFunction()" infinite-scroll-distance="3"></div>
 
           <div class="col-6 col-sm-6 col-lg-4" ng-repeat="item in laws | filter: query | orderBy: lawOrder:direction">

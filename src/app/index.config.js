@@ -1,14 +1,12 @@
 (function() {
     'use strict';
-
-    import ngInfiniteScroll from 'ng-infinite-scroll';
-
+  
     angular
         .module('lawsApp')
         .config(config);
 
     /** @ngInject */
-    function config($logProvider, toastr, ngInfiniteScroll) {
+    function config($logProvider, toastr) {
         // Enable log
         $logProvider.debugEnabled(true);
 
