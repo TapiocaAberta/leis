@@ -1,9 +1,9 @@
 <header ng-include="'app/components/navbar/navbar.html'"></header>
 <div class="container" ng-model="laws">
     <div>
-        <h3>{{ law.title }}</h3>
-        <h3>Projeto de lei nº {{ law.projectLawNumber }}</h3>
-        <h3>{{ law.date }}</h3>
-        <div id="lawCompleteBody" ng-bind-html="law.desc | markdown"></div>
+        <h3>{{ ::law.title }}</h3>
+        <h3>Projeto de lei nº {{ ::law.projectLawNumber }}</h3>
+        <h3>{{ ::law.date }}</h3>
+        <div ng-bind-html="law.desc"></div>
     </div>
 </div>

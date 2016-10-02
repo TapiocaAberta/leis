@@ -19,17 +19,29 @@
           <div class="col-6 col-sm-6 col-lg-4" ng-repeat="item in laws | filter: query | orderBy: lawOrder:direction">
             <a class="thumbnail" href="#/leis/{{::item.code}}">
               <div class="caption">
+
                   <h3 style="text-transform:capitalize;">{{ ::item.code }}</h3>
-                  <p>{{ ::item.title }}</p>
-                  <p ng-repeat="alderman in item.author"><strong>{{ ::alderman.name }}</strong></p>
+
+                  <h5>{{ ::item.title }}</h5>
+
+                  <ul class="list-inline">
+                    <li ng-repeat="alderman in item.author">
+                      <strong>{{ ::alderman.name }}</strong>
+                    </li>
+                  </ul>
+
                   <p><strong>{{ ::item.date }}</strong></p>
               </div>
-              
-              <!-- TODO: tem que implementar essa função no controller -->
-              <div infinite-scroll="$ctrl.myPagingFunction()" infinite-scroll-distance="3"></div>
             </a>
           </div>
-
         </div>
+
+        <div class="row">
+          <ul class="pager">
+            <li><a ng-click="previous(_links.prev.href)">Previous</a></li>
+            <li><a ng-click="next(_links.next.href)">Next</a></li>
+          </ul>
+        </div>
+
     </div>
 </div>

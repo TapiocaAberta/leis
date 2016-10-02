@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-  
+
     angular
         .module('lawsApp')
         .config(config);
