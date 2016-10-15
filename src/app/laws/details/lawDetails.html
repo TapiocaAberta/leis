@@ -1,9 +1,27 @@
-<header ng-include="'app/components/navbar/navbar.html'"></header>
-<div class="container" ng-model="laws">
-    <div>
-        <h3>{{ ::law.title }}</h3>
-        <h3>Projeto de lei nº {{ ::law.projectLawNumber }}</h3>
-        <h3>{{ ::law.date }}</h3>
-        <div ng-bind-html="law.desc"></div>
-    </div>
+<div class="col-md-12">
+  <div class="container" ng-model="laws">
+
+    <header ng-include="'app/components/navbar/navbar.html'"></header>
+
+      <div>
+          <h3>{{ ::law.title }}</h3>
+          <h3>Projeto de lei nº {{ ::law.projectLawNumber }}</h3>
+          <h3>{{ ::law.date }}</h3>
+          <div ng-bind-html="law.desc"></div>
+      </div>
+
+      <div class="panel-footer">
+      	<button type="button" class="btn btn-success" ng-click="vote(law._links.voteYes.href)">
+         <span class="badge">{{ law.positiveVotes }}</span>
+          Útil
+      		<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+      	</button>
+      	<button type="button" class="btn btn-danger" ng-click="vote(law._links.voteNo.href)">
+          <span class="badge">{{ law.negativeVotes }}</span>
+      		Inútil
+      		<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+      	</button>
+      </div>
+
+  </div>
 </div>

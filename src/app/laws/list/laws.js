@@ -10,7 +10,7 @@
                     controller: 'LawsCtrl'
                 })
                 .state('laws-alderman', {
-                    url: '/leis/alderman/:name',
+                    url: '/politicos/:name/leis',
                     templateUrl: 'app/laws/list/laws.html',
                     controller: 'LawsCtrl'
                 });

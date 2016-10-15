@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('lawsApp')
-        .controller('LawsCtrl', function($scope, $http, $stateParams) {
+        .controller('LawsCtrl', function($scope, $http, $stateParams, URI) {
 
           if ($stateParams.name) {
 
-            $http.get('http://temis-server.herokuapp.com/api/laws/alderman/' + $stateParams.name)
+            $http.get(URI + 'alderman/' + $stateParams.name + '/law')
             .success(function(data) {
                 $scope.laws = data._embedded.lawList;
                 $scope._links = data._links;
@@ -18,7 +18,7 @@
 
           } else {
 
-            $http.get('http://temis-server.herokuapp.com/api/laws')
+            $http.get(URI + 'laws')
             .success(function(data) {
                 $scope.laws = data._embedded.lawList;
                 $scope._links = data._links;

@@ -1,38 +1,45 @@
-<div class="col-md-12">
-    <div class="container">
-        <header ng-include="'app/components/navbar/navbar.html'"></header>
-        <div>
-            <h2>Vereadores de São José dos Campos</h2>
-        </div>
-        <div class="slide-animate" ng-include src="'views/base/facebook.html'"></div>
-        <div class="well">
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="sizing-addon1">
-                <i class="glyphicon glyphicon-search"></i>
-                </span>
-                <input ng-model="query" placeholder="Procure pelos vereadores" autofocus type="text" class="form-control" aria-describedby="sizing-addon1">
-            </div>
-        </div>
-        <div class="row">
+<div class="container">
 
-          <div class="col-xs-6 col-sm-4" ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
-            <div class="card hovercard">
-              <div class="cardheader"></div>
-              <div class="avatar">
-                  <img alt="Photo of {{ ::item.name }}" ng-src="{{ ::item.photo }}" ng-if="!item.notFound">
-                  <img alt="Photo of {{ ::item.name }}" ng-src="http://sjcdigital.github.io/balanco-municipios-sp/images/dados_abertos_sjc.jpg" ng-if="item.notFound">
-              </div>
-              <div class="info">
-                  <div class="title">
-                      <a href="#/leis/alderman/{{::item.name}}"> {{ ::item.name }}</a>
-                  </div>
-                  <div class="desc">
-                    {{ ::item.politicalParty }} </br>
-                    {{ ::item.email }}
-                  </div>
-              </div>
+    <header ng-include="'app/components/navbar/navbar.html'"></header>
+
+    <div class="row">
+          <h2>Vereadores de São José dos Campos</h2>
+    </div>
+
+    <br />
+
+    <div class="row">
+      <div class="[ col-sm-6 col-md-4 ]" ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
+        <div class="[ info-card ]">
+          <img style="width: 100%" alt="Photo of {{ ::item.name }}" ng-src="{{ ::item.photo }}" />
+          <div class="[ info-card-details ] animate">
+            <div class="[ info-card-header ]">
+              <h1> {{::item.name}} </h1>
+              <h3> {{::item.politicalParty}}</h3>
+            </div>
+            <div class="[ info-card-detail ]">
+              <p class="text-justify">{{::item.info}}</p>
+              <p class="text-left">{{::item.legislature}}</p>
+              <p class="text-left">{{::item.phone}}</p>
+              <p class="text-left">{{::item.lawsCount}} Leis Criadas</p>
+              <p class="text-left">{{::item.email}}</p>
+
+              <hr/>
+              <p class="text-center">
+                <a href="#/politicos/{{::item.name}}/leis"> Ver Leis </a>
+              </p>
+
             </div>
           </div>
+        </div>
       </div>
     </div>
+
+    <div class="row">
+      <ul class="pager">
+        <li><a ng-click="previous(_links.prev.href)">Previous</a></li>
+        <li><a ng-click="next(_links.next.href)">Next</a></li>
+      </ul>
+    </div>
+
 </div>

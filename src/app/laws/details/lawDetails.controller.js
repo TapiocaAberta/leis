@@ -2,12 +2,11 @@
     'use strict';
 
     angular.module('lawsApp')
-        .controller('LawDetailsCtrl', function($scope, $http, $stateParams) {
+        .controller('LawDetailsCtrl', function($scope, $http, $stateParams, URI) {
 
           if ($stateParams.code) {
 
-            $http.get('http://temis-server.herokuapp.com/api/laws/' + $stateParams.code)
-            .success(function(data) {
+            $http.get(URI + 'laws/' + $stateParams.code).success(function(data) {
                 $scope.law = data;
             })
             .error(function (error) {
@@ -15,6 +14,15 @@
             });
 
           }
+
+          $scope.vote = function(url) {
+            
+            $http.put(url).success(function(data) {
+              $scope.law = data;
+            }).error(function (error) {
+              console.log(error);
+            });
+          };
 
         });
 })();
