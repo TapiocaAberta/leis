@@ -8,7 +8,7 @@
           <h3>Projeto de lei nº {{ ::law.projectLawNumber }}</h3>
           <h3>{{ ::law.date }}</h3>
           <div ng-bind-html="law.desc"></div>
-      </div>
+      </div> 
 
       <div class="panel-footer">
       	<button type="button" class="btn btn-success" ng-click="vote(law._links.voteYes.href)">
