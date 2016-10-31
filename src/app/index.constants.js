@@ -8,6 +8,6 @@
         .constant('toastr', toastr)
         .constant('moment', moment)
         .constant('URI', 'http://localhost:8080/api/');
-        //'http://temis-server.herokuapp.com/api/laws/'
+        //'http://temis-server.herokuapp.com/api/'
 
 })();
