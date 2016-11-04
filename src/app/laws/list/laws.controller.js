@@ -4,6 +4,8 @@
     angular.module('lawsApp')
         .controller('LawsCtrl', function($scope, $http, $stateParams, URI) {
 
+          $scope.direction = 'desc';
+
           if ($stateParams.name) {
 
             $http.get(URI + 'alderman/' + $stateParams.name + '/law')
