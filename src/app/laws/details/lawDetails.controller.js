@@ -23,7 +23,7 @@
 
             $http.put(url).success(function(data) {
 
-              $scope.law = data;
+              $scope.law         = data;
               $scope.successVote = true;
               $scope.message     = 'Voto computado!';
 
@@ -34,6 +34,12 @@
             });
 
           };
+
+          $scope.hoveringOver = function(value) {
+            $scope.overStar = value;
+            $scope.percent = 100 * (value / $scope.max);
+          };
+
 
         });
 })();

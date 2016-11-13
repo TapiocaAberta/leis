@@ -10,35 +10,10 @@
           <div ng-bind-html="law.desc"></div>
       </div>
 
+      <br />
+
       <div class="panel-footer">
-
-        <div id="messages">
-          <div class="alert alert-success alert-dismissible" role="alert" ng-show="successVote">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            {{message}}
-          </div>
-          <div class="alert alert-danger alert-dismissible" role="alert"  ng-show="errorVote">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-
-            {{message}}
-          </div>
-          
-        </div>
-
-      	<button type="button" class="btn btn-success" ng-click="vote(law._links.voteYes.href)">
-         <span class="badge">{{ law.positiveVotes }}</span>
-          Útil
-      		<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-      	</button>
-      	<button type="button" class="btn btn-danger" ng-click="vote(law._links.voteNo.href)">
-          <span class="badge">{{ law.negativeVotes }}</span>
-      		Inútil
-      		<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-      	</button>
+        {{law.rating}}
       </div>
 
   </div>
