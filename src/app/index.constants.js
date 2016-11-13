@@ -7,6 +7,6 @@
         .constant('malarkey', malarkey)
         .constant('toastr', toastr)
         .constant('moment', moment)
-        .constant('URI', 'http://localhost:8080/api/');
-        //.constant('URI', 'http://temis-server.herokuapp.com/api/');
+        //.constant('URI', 'http://localhost:8080/api/');
+        .constant('URI', 'http://temis-server.herokuapp.com/api/');
 })();
