@@ -3,18 +3,34 @@
 
     <header ng-include="'app/components/navbar/navbar.html'"></header>
 
-      <div>
-          <h3>{{ ::law.title }}</h3>
-          <h3>Projeto de lei nº {{ ::law.projectLawNumber }}</h3>
-          <h3>{{ ::law.date }}</h3>
-          <div ng-bind-html="law.desc"></div>
-      </div>
+    <!-- Law title and summary -->
+    <div>
+      <h3>{{ ::law.title }}</h3>
+      <h3>Projeto de lei nº {{ ::law.projectLawNumber }}</h3>
 
-      <br />
+      {{law.summary}}
 
-      <div class="panel-footer">
-        {{law.rating}}
+      <h3>{{ ::law.date }}</h3>
+    </div>
+
+    <!-- Rating Panel -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Vote na Relevância desta lei</h3>
       </div>
+      <div class="panel-body">
+        <input-stars max="5" ng-model="law.rating" on-star-click="clickRating(law.rating)"></input-stars>
+        Quantidade de votos: {{law.ratingCount || 0}} 
+      </div>
+    </div>
+
+
+    <!-- Entire Law description -->
+    <div> 
+      <div ng-bind-html="law.desc"></div>
+    </div>
+
+    <br />
 
   </div>
 </div>
