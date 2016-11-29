@@ -63,6 +63,7 @@
     "url": "git+https://github.com/sjcdigital/leis.git"
   },
   "scripts": {
+    "start":"./node_modules/.bin/gulp && ./node_modules/.bin/gulp serve",
     "bower": "./node_modules/.bin/bower",
     "build": "./node_modules/.bin/gulp",
     "serve": "./node_modules/.bin/gulp serve",
