@@ -1,6 +1,14 @@
-## Leis SJC [![Build Status](https://travis-ci.org/transparenciasjc/leis.svg)](https://travis-ci.org/transparenciasjc/leis)
+<p align="center"><a href="http://leis.sjcdigital.com/"><img src="http://leis.sjcdigital.com/assets/images/profile.png" alt="Monitor Legislativo" height="100" /></a></p>
+<p align="center">
+<a href="https://travis-ci.org/sjcdigital/leis"><img src="https://travis-ci.org/sjcdigital/leis.svg" alt="Build Status"></a>
+<a href="https://coveralls.io/r/sjcdigital/leis"><img src="https://coveralls.io/repos/sjcdigital/leis/badge.svg" alt="Coverage Status"></a>
+<a href="https://www.bithound.io/github/sjcdigital/leis/master"><img src="https://www.bithound.io/github/sjcdigital/leis/badges/score.svg?" alt="Bithound Score"></a>
+<a href="https://gitter.im/transparenciasjc/leis"><img src="https://badges.gitter.im/transparenciasjc/leis.svg" alt="Chat"></a>
+</p>
+___
 
-[![Join the chat at https://gitter.im/transparenciasjc/leis](https://badges.gitter.im/transparenciasjc/leis.svg)](https://gitter.im/transparenciasjc/leis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+## Monitor Legislativo
 
 Angular application to show all law-projects approved by the government of São José dos Campos.
 
