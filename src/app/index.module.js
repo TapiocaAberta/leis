@@ -4,7 +4,7 @@
 
     angular
         .module('lawsApp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
-            'ngResource', 'ui.router', 'ui.bootstrap', 'mgcrea.ngStrap'
+            'ngResource', 'ui.router', 'ui.bootstrap', 'mgcrea.ngStrap', 'angular-input-stars'
         ]);
 
 })();
