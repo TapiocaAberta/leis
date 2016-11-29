@@ -26,15 +26,15 @@ Make sure these are installed first.
 2. Run `npm install -g yo bower grunt-cli gulp && npm install && bower install` to install required dependencies.
 3. When it's done installing, run one of the task runners to get going:
 
-## Gulp tasks
+## NPM scripts
 
-* `gulp` or `gulp build` to build an optimized version of your application in `/dist`
-* `gulp serve` to launch a browser sync server on your source files
-* `gulp serve:dist` to launch a server on your optimized application
-* `gulp test` to launch your unit tests with Karma
-* `gulp test:auto` to launch your unit tests with Karma in watch mode
-* `gulp protractor` to launch your e2e tests with Protractor
-* `gulp protractor:dist` to launch your e2e tests with Protractor on the dist files
+`npm run-script build` to build an optimized version of your application in /dist
+`npm run-script serve` to launch a browser sync server on your source files
+`npm run-script serve:dist` to launch a server on your optimized application
+`npm run-script test` to launch your unit tests with Karma
+`npm run-script test:auto` to launch your unit tests with Karma in watch mode
+`npm run-script protractor` to launch your e2e tests with Protractor
+`npm run-script protractor:dist` to launch your e2e tests with Protractor on the dist files
 
 ### Features included in the gulpfile
 * *useref* : allow configuration of your files in comments of your HTML file

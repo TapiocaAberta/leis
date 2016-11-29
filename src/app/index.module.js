@@ -1,9 +1,10 @@
 (function() {
 
-  'use strict';
+    'use strict';
 
     angular
         .module('lawsApp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
-                'ngResource', 'ui.router', 'ui.bootstrap', 'mgcrea.ngStrap']);
+            'ngResource', 'ui.router', 'ui.bootstrap', 'mgcrea.ngStrap'
+        ]);
 
 })();

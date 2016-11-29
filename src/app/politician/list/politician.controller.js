@@ -10,32 +10,32 @@
                 $scope._links = data._links;
                 $scope.politicianOrder = 'name';
 
-            }).error(function (error) {
-              console.log(error);
+            }).error(function(error) {
+                console.log(error);
             });
 
             $scope.next = function(url) {
 
-              $http.get(url).success(function(data) {
-                $scope.politicians = data._embedded.aldermanList;
-                $scope._links = data._links;
-                $scope.politicianOrder = 'name';
+                $http.get(url).success(function(data) {
+                    $scope.politicians = data._embedded.aldermanList;
+                    $scope._links = data._links;
+                    $scope.politicianOrder = 'name';
 
-              }).error(function (error) {
-                console.log(error);
-              });
+                }).error(function(error) {
+                    console.log(error);
+                });
             };
 
             $scope.previous = function(url) {
 
-              $http.get(url).success(function(data) {
-                $scope.politicians = data._embedded.aldermanList;
-                $scope._links = data._links;
-                $scope.politicianOrder = 'name';
+                $http.get(url).success(function(data) {
+                    $scope.politicians = data._embedded.aldermanList;
+                    $scope._links = data._links;
+                    $scope.politicianOrder = 'name';
 
-              }).error(function (error) {
-                console.log(error);
-              });
+                }).error(function(error) {
+                    console.log(error);
+                });
 
             };
 
