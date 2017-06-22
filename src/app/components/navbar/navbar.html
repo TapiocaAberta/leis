@@ -1,11 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-custom" bs-navbar>
     <div class="container-fluid">
         <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+            </button>
             <a class="navbar-brand" href="#/">
                 <span class="glyphicon glyphicon-home"></span> Monitor Legislativo
             </a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-class="!navCollapsed && 'in'">
             <ul class="nav navbar-nav navbar-right">
                 <li data-match-route="/ranking"><a ng-href="#/ranking">Ranking</a></li>
                 <li data-match-route="/leis"><a href="#/leis">Leis</a></li>
