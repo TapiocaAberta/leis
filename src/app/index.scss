@@ -20,7 +20,7 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
 }
 
 .thumbnail {
-  height: 200px;
+  padding: 0px !important;
 
   img.pull-right {
     width: 50px;
