@@ -1,3 +1,4 @@
+<br>
 <div class="col-md-12">
   <div class="container" ng-model="laws">
 
@@ -5,12 +6,24 @@
 
     <!-- Law title and summary -->
     <div>
-      <h3>{{ ::law.title }}</h3>
-      <h3>Projeto de lei nº {{ ::law.projectLawNumber }}</h3>
 
-      {{law.summary}}
+      <div class="row">
+        <span class="label label-info">{{::law.tipo.nome}}</span>
+        <span class="label label-success">{{::law.situacaoSimplificada.nome}}</span>
+        <span class="label label-warning"> {{::law.classe.nome}} Sem Classificação</span>
+      </div>
 
-      <h3>{{ ::law.date }}</h3>
+      <br>
+
+      <h5>Número do Processo {{ ::law.numeroProcesso }}</h5>
+      <h5>Número da Propositura {{ ::law.numeroPropositura }}</h5>
+
+      <br>
+
+      <h3>{{law.ementa}} - Realize o <a href="{{::law.pdfLei}}" target="_blank"> download deste documento </a>.</h3>
+
+      <br>
+
     </div>
 
     <!-- Rating Panel -->
@@ -20,14 +33,8 @@
       </div>
       <div class="panel-body">
         <input-stars max="5" ng-model="law.rating" on-star-click="clickRating(law.rating)"></input-stars>
-        Quantidade de votos: {{law.ratingCount || 0}} 
+        Quantidade de votos: {{law.ratingCount || 0}}
       </div>
-    </div>
-
-
-    <!-- Entire Law description -->
-    <div> 
-      <div ng-bind-html="law.desc"></div>
     </div>
 
     <br />

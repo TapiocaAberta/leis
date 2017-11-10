@@ -20,22 +20,21 @@
 
           <div class="col-12 col-sm-6 col-lg-6" ng-repeat="item in laws | filter: query | orderBy: lawOrder:direction">
 
-            <a class="thumbnail" href="#/leis/{{::item.code}}"
-              tooltip-placement="top" uib-tooltip="teste" tooltip-trigger="'mouseenter'">
+            <a class="thumbnail" href="#/leis/{{::item.id}}"
+              tooltip-placement="top" uib-tooltip="{{::item.numeroProcesso}}" tooltip-trigger="'mouseenter'">
               <div class="caption">
-                  {{::item.code}}
-                  <span class="label label-info">{{::item.type}}</span>
 
-                  <h3 style="text-transform:capitalize;">{{ ::item.title }}</h3>
+                <span class="label label-info">{{::item.tipo.nome}}</span>
+                <span class="label label-success">{{::item.situacaoSimplificada.nome}}</span>
+                <span class="label label-warning"> {{::item.classe.nome}} Sem Classificação</span>
+
+                  <h3 style="text-transform:capitalize;">{{ ::item.numeroProcesso }}</h3>
                   <h5 class="text-justify">
-                    {{ ::item.summary | limitTo: 97}} ...
+                    {{ ::item.ementa | limitTo: 97}} ...
                   </h5>
-                  <ul class="list-inline">
-                    <li ng-repeat="alderman in item.author">
-                      <strong>{{ ::alderman.name }}</strong>
-                    </li>
-                  </ul>
-                  <p><strong>{{ ::item.date }}</strong></p>
+                  <h5>
+                    {{::item.autor.nome}}
+                  </h5>
               </div>
 
             </a>

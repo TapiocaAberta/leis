@@ -4,21 +4,24 @@
     angular.module('lawsApp')
         .controller('PoliticianCtrl', function($scope, $http, URI) {
 
-            $http.get(URI + 'alderman').success(function(data) {
+          var TOTAL_PG = 9;
+          var PG = 0;
 
-                $scope.politicians = data._embedded.aldermanList;
-                $scope._links = data._links;
-                $scope.politicianOrder = 'name';
+            $http.get(URI + 'autores?total=' + TOTAL_PG + '&pg=' + PG).success(function(data) {
+
+                $scope.politicians = data;
+                $scope.politicianOrder = 'nome';
 
             }).error(function(error) {
                 console.log(error);
             });
 
-            $scope.next = function(url) {
+            $scope.next = function() {
 
-                $http.get(url).success(function(data) {
-                    $scope.politicians = data._embedded.aldermanList;
-                    $scope._links = data._links;
+              PG+=1;
+
+              $http.get(URI + 'autores?total=' + TOTAL_PG + '&pg=' + PG).success(function(data) {
+                    $scope.politicians = data;
                     $scope.politicianOrder = 'name';
 
                 }).error(function(error) {
@@ -26,17 +29,20 @@
                 });
             };
 
-            $scope.previous = function(url) {
+            $scope.previous = function() {
 
-                $http.get(url).success(function(data) {
-                    $scope.politicians = data._embedded.aldermanList;
-                    $scope._links = data._links;
-                    $scope.politicianOrder = 'name';
+              if(PG !== 0) {
 
-                }).error(function(error) {
-                    console.log(error);
-                });
+                PG-=1;
 
+                $http.get(URI + 'autores?total=' + TOTAL_PG + '&pg=' + PG).success(function(data) {
+                      $scope.politicians = data;
+                      $scope.politicianOrder = 'name';
+
+                  }).error(function(error) {
+                      console.log(error);
+                  });
+              }
             };
 
         });

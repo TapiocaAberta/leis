@@ -5,58 +5,43 @@
         .controller('LawsCtrl', function($scope, $http, $stateParams, URI) {
 
             $scope.direction = 'desc';
+            var TOTAL_PG = 6;
+            $scope.PG = 0;
 
-            if ($stateParams.name) {
-
-                $http.get(URI + 'alderman/' + $stateParams.name + '/law')
+            $http.get(URI + 'leis?total=' + TOTAL_PG + '&pg=' + $scope.PG)
                     .success(function(data) {
-                        $scope.laws = data._embedded.lawList;
-                        $scope._links = data._links;
-                        $scope.lawOrder = 'code';
+                        $scope.laws = data;
+                        $scope.lawOrder = 'id';
                     })
                     .error(function(error) {
                         console.log(error);
-                    });
+            });
 
-            } else {
 
-                $http.get(URI + 'laws')
-                    .success(function(data) {
-                        $scope.laws = data._embedded.lawList;
-                        $scope._links = data._links;
-                        $scope.lawOrder = 'code';
-                    })
-                    .error(function(error) {
-                        console.log(error);
-                    });
-
-            }
-
-            $scope.next = function(url) {
-
-                $http.get(url)
-                    .success(function(data) {
-                        $scope.laws = data._embedded.lawList;
-                        $scope._links = data._links;
-                        $scope.lawOrder = 'code';
-                    })
-                    .error(function(error) {
-                        console.log(error);
-                    });
+            $scope.next = function() {
+              $scope.PG+=1;
+              $http.get(URI + 'leis?total=' + TOTAL_PG + '&pg=' + $scope.PG)
+                      .success(function(data) {
+                          $scope.laws = data;
+                          $scope.lawOrder = 'id';
+                      })
+                      .error(function(error) {
+                          console.log(error);
+              });
             };
 
-            $scope.previous = function(url) {
-
-                $http.get(url)
-                    .success(function(data) {
-                        $scope.laws = data._embedded.lawList;
-                        $scope._links = data._links;
-                        $scope.lawOrder = 'code';
-                    })
-                    .error(function(error) {
-                        console.log(error);
-                    });
-
+            $scope.previous = function() {
+              if($scope.PG !==0) {
+                $scope.PG -=1;
+                $http.get(URI + 'leis?total=' + TOTAL_PG + '&pg=' + $scope.PG)
+                        .success(function(data) {
+                            $scope.laws = data;
+                            $scope.lawOrder = 'id';
+                        })
+                        .error(function(error) {
+                            console.log(error);
+                });
+              }
             };
 
         });

@@ -11,22 +11,22 @@
     <div class="row">
       <div class="[ col-sm-6 col-md-4 ]" ng-repeat="item in politicians | filter: query | orderBy: politicianOrder:direction">
         <div class="[ info-card ]">
-          <img style="width: 100%" alt="Photo of {{ ::item.name }}" ng-src="{{ ::item.photo }}" />
+          <img style="width: 100%" alt="Photo of {{ ::item.nome }}" ng-src="{{ ::item.foto }}" />
           <div class="[ info-card-details ] animate">
             <div class="[ info-card-header ]">
-              <h1> {{::item.name}} </h1>
-              <h3> {{::item.politicalParty}}</h3>
+              <h1> {{::item.nome}} </h1>
+              <h3> {{::item.partidoPolitico.nome}}</h3>
             </div>
             <div class="[ info-card-detail ]">
               <p class="text-justify">{{::item.info}}</p>
-              <p class="text-left">{{::item.legislature}}</p>
-              <p class="text-left">{{::item.phone}}</p>
-              <p class="text-left">{{::item.lawsCount}} Leis Criadas</p>
+              <p class="text-left">{{::item.legislatura}}</p>
+              <p class="text-left">{{::item.telefone}}</p>
+              <p class="text-left">{{::item.quantidadeDeLeis}} Leis Criadas</p>
               <p class="text-left">{{::item.email}}</p>
 
               <hr/>
               <p class="text-center">
-                <a href="#/politicos/{{::item.name}}/leis"> Ver Leis </a>
+                <a href="#/politicos/{{::item.id}}"> Ver Perfil </a>
               </p>
 
             </div>
@@ -37,8 +37,8 @@
 
     <div class="row">
       <ul class="pager">
-        <li><a ng-click="previous(_links.prev.href)">Previous</a></li>
-        <li><a ng-click="next(_links.next.href)">Next</a></li>
+        <li><a ng-click="previous()">Previous</a></li>
+        <li><a ng-click="next()">Next</a></li>
       </ul>
     </div>
 
