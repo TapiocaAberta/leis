@@ -2,21 +2,18 @@
     'use strict';
 
     angular.module('lawsApp')
-        .controller('LawDetailsCtrl', function($scope, $http, $stateParams, URI, toastr) {
+        .controller('LawDetailsCtrl', function($scope, $http, $stateParams, URI) {
 
-          $scope.messageSuccess = '';
-          $scope.messageError = '';
+          $scope.alert = {show : false, type : '', message : ''};
 
-            if ($stateParams.id) {
+          if ($stateParams.id) {
 
-                $http.get(URI + 'leis/' + $stateParams.id).success(function(data) {
-                        $scope.law = data;
-
-                }) .error(function(error) {
-                  console.log(error);
-                });
-
-            }
+            $http.get(URI + 'leis/' + $stateParams.id).success(function(data) {
+              $scope.law = data;
+            }) .error(function(error) {
+              console.log(error);
+            });
+          }
 
             $scope.clickRating = function(rating) {
                 if(Number.isInteger(rating)) {
@@ -31,12 +28,18 @@
               $http.put(URI + 'leis/' + $stateParams.id + '?rating=' + rating).success(function(data) {
 
                  $scope.law = data;
-                 $scope.messageSuccess = 'Voto computado!';
+                 $scope.alert = {show : true, type : 'success', message : 'Voto computado!'};
 
               }) .error(function(error) {
                 console.log(error);
-                $scope.messageError = error.mensagem;
+                $scope.alert = {show : true, type : 'danger', message : error.mensagem};
               });
             };
+
+            $scope.close = function() {
+              $scope.alert = {show : false, type : '', message : ''};
+              $scope.law.rating = 0;
+            };
+
         });
 })();

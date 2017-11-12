@@ -4,7 +4,7 @@
 
     angular
         .module('lawsApp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
-            'ngResource', 'ui.router', 'ui.bootstrap', 'mgcrea.ngStrap', 'angular-input-stars'
+            'ngResource', 'ui.router', 'ui.bootstrap', 'mgcrea.ngStrap', 'angular-input-stars', 'nvd3'
         ]).directive('loading', ['$http', function($http){
             return {
                 restrict: 'A',

@@ -4,7 +4,14 @@
 
     <header ng-include="'app/components/navbar/navbar.html'"></header>
 
-    <!-- Law title and summary -->
+      <br>
+
+      <div class="row">
+        <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" ng-show="alert.show" close="close()">
+          {{alert.message}}
+        </div>
+      </div>
+
       <div class="row">
         <span class="label label-info">{{::law.tipo.nome}}</span>
         <span class="label label-success">{{::law.situacaoSimplificada.nome}}</span>
@@ -45,10 +52,6 @@
         <h3>Vote na Relevância desta lei</h3>
       </div>
       <div class="panel-body">
-
-        <p class="text-success">{{messageSuccess}}</p>
-        <p class="text-error">{{messageError}}</p>
-
         <input-stars max="5" ng-model="law.rating" on-star-click="clickRating(law.rating)"></input-stars>
         Quantidade de votos: {{law.quantidadeDeVotos || 0}}
       </div>
