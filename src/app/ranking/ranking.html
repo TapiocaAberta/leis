@@ -1,0 +1,115 @@
+<div class="col-md-12">
+
+    <br>
+
+    <div class="container">
+        <header ng-include="'app/components/navbar/navbar.html'"></header>
+
+        <div class="row">
+            <div class="col-md-12">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">Por Tipo</div>
+                      <div class="panel-body">
+
+                        <div class="col-md-6">
+                          <nvd3 options="options" data="lawTypeData"></nvd3>
+                        </div>
+
+                        <div class="col-md-6">
+
+                          <table class="table table-hover">
+                            <caption>Dados Tipo</caption>
+                            <thead>
+                              <tr>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="data in dataChart.tipo">
+                                <td>{{data.label}}</td>
+                                <td>{{data.valor}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                        </div>
+
+                      </div>
+                  </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-12">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">Por Tipo</div>
+                      <div class="panel-body">
+
+                        <div class="col-md-6">
+                          <nvd3 options="options" data="lawSituationData"></nvd3>
+                        </div>
+
+                        <div class="col-md-6">
+                          <table class="table table-hover">
+                            <caption>Dados Tipo</caption>
+                            <thead>
+                              <tr>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="data in dataChart.situacao">
+                                <td>{{data.label}}</td>
+                                <td>{{data.valor}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-12">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">Por Tipo</div>
+                      <div class="panel-body">
+
+                        <div class="col-md-6">
+                          <nvd3 options="options" data="lawClassData"></nvd3>
+                        </div>
+
+                        <div class="col-md-6">
+                          <table class="table table-hover">
+                            <caption>Dados Tipo</caption>
+                            <thead>
+                              <tr>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="data in dataChart.classe">
+                                <td>{{data.label}}</td>
+                                <td>{{data.valor}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+                  </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+</div>
