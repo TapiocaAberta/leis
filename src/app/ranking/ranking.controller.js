@@ -26,7 +26,7 @@
           $http.get(URI + 'leis/grafico').success(function(data) {
 
             $scope.dataChart = data;
-            
+
             buildDataChart(data.tipo, $scope.lawTypeData);
             buildDataChart(data.situacao, $scope.lawSituationData);
             buildDataChart(data.classe, $scope.lawClassData);

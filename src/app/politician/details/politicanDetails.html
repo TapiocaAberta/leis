@@ -100,7 +100,7 @@
 
                           <span class="label label-info">{{::item.tipo.nome}}</span>
                           <span class="label label-success">{{::item.situacaoSimplificada.nome}}</span>
-                          <span class="label label-warning"> {{::item.classe.nome}} Sem Classificação</span>
+                          <span class="label label-warning"> {{::item.classe.nome || 'Sem Classificação'}}</span>
 
                           <h3 style="text-transform:capitalize;">{{ ::item.numeroProcesso }}</h3>
                           <h6 class="text-justify">

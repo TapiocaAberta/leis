@@ -15,7 +15,7 @@
       <div class="row">
         <span class="label label-info">{{::law.tipo.nome}}</span>
         <span class="label label-success">{{::law.situacaoSimplificada.nome}}</span>
-        <span class="label label-warning"> {{::law.classe.nome}} Sem Classificação</span>
+        <span class="label label-warning"> {{::item.classe.nome || 'Sem Classificação'}} </span>
       </div>
 
       <br>

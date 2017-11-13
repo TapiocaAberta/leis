@@ -25,7 +25,7 @@
 
             $scope.vote = function(rating) {
 
-              $http.put(URI + 'leis/' + $stateParams.id + '?rating=' + rating).success(function(data) {
+              $http.put(URI + 'leis/' + $stateParams.id + '/vota?rating=' + rating).success(function(data) {
 
                  $scope.law = data;
                  $scope.alert = {show : true, type : 'success', message : 'Voto computado!'};
