@@ -60,7 +60,6 @@
 
             $scope.filtrar = function() {
               getLaws();
-
             };
 
             $scope.next = function() {
