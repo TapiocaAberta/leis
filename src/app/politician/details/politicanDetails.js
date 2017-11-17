@@ -5,7 +5,7 @@
         .config(function($stateProvider) {
             $stateProvider
                 .state('politicanDetails', {
-                    url: '/politicos/:itemId',
+                    url: '/politicos/:idItem',
                     templateUrl: 'app/politician/details/politicanDetails.html',
                     controller: 'PoliticanDetailsCtrl'
                 });

@@ -1,194 +1,132 @@
 <header ng-include="'app/components/navbar/navbar.html'"></header>
+
+<br>
+
 <div class="container backgroundBlue" ng-model="politicians">
-    <center>
-        <a href="#/politicos/{{prevItem}}"><span class="glyphicon glyphicon-chevron-left"></span> Anterior</a>
-        <a href="#/politicos/{{nextItem}}"> Próximo <span class="glyphicon glyphicon-chevron-right"></span></a>
-    </center>
+
     <div class="row profile">
         <div class="col-md-3">
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    <img ng-src="{{politicians[whichItem].FOTO}}" alt="Photo of {{politicians[whichItem].name}}" class="img-responsive" alt="">
+                    <img ng-src="{{politicians.foto}}" alt="Photo of {{politicians.nome}}" class="img-responsive" alt="">
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        {{politicians[whichItem].NOME_URNA_CANDIDATO}}
+                        {{politicians.nome}}
+                    </div>
+
+                    <p>
+                      <small>{{::politicians.legislatura}}</small>
+                    </p>
+
+                    <div class="profile-usertitle-job text-justifty">
+                        {{politicians.info}}
                     </div>
                     <div class="profile-usertitle-job">
-                        {{politicians[whichItem].DESCRICAO_GRAU_INSTRUCAO}}
+                        {{politicians.partidoPolitico.nome}} - {{politicians.partidoPolitico.sigla}}
                     </div>
+
                     <div class="profile-usertitle-job">
-                        {{politicians[whichItem].NOME_PARTIDO}}
+                        Quantidade de projetos propostos: {{politicians.quantidadeDeLeis}}
                     </div>
                 </div>
-                <!-- END SIDEBAR USER TITLE -->
-                <!-- SIDEBAR BUTTONS -->
+
                 <div class="profile-userbuttons">
                     <button type="button" class="btn btn-success">Seguir</button>
-                    <button type="button" class="btn btn-danger btn-sm">Mensagem</button>
+                    <button type="button" class="btn btn-danger btn-sm" disabled>Mensagem</button>
                 </div>
-                <!-- END SIDEBAR BUTTONS -->
-                <!-- SIDEBAR MENU -->
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="#">
-                                <i class="glyphicon glyphicon-home"></i> Overview </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="glyphicon glyphicon-user"></i> Account Settings </a>
-                        </li>
-                        <li>
-                            <a href="#" target="_blank">
-                                <i class="glyphicon glyphicon-ok"></i> Tasks </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="glyphicon glyphicon-flag"></i> Help </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- END MENU -->
             </div>
         </div>
+
+        <!-- Lado Direito -->
         <div class="col-md-9">
-            <div class="profile-content">
-                <div class="page-header">
-                    <h1 id="">Linha do tempo dos projetos</h1>
-                </div>
+          <div class="profile-content">
+
+            <uib-accordion close-others="oneAtATime">
+
+              <div uib-accordion-group class="panel-default" heading="Gráficos" is-open="false" is-disabled="false">
+
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="panel panel-default">
+                              <div class="panel-heading">Por Tipo</div>
+                              <div class="panel-body">
+                                  <nvd3 options="options" data="lawTypeData"></nvd3>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <br>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="panel panel-default">
+                              <div class="panel-heading">Por Situação</div>
+                              <div class="panel-body">
+                                  <nvd3 options="options" data="lawSituationData"></nvd3>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <br>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="panel panel-default">
+                              <div class="panel-heading">Por Classificação</div>
+                              <div class="panel-body">
+                                  <nvd3 options="options" data="lawClassData"></nvd3>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- fim div de graficos -->
+
+              <div uib-accordion-group class="panel-default" heading="Projetos Propostos" is-open="false" is-disabled="false">
+
                 <div id="timeline">
-                    <div class="row timeline-movement timeline-movement-top">
-                        <div class="timeline-badge timeline-future-movement">
-                            <a href="#">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </a>
-                        </div>
-                        <div class="timeline-badge timeline-filter-movement">
-                            <a href="#">
-                                <span class="glyphicon glyphicon-time"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row timeline-movement">
-                        <div class="timeline-badge">
-                            <span class="timeline-balloon-date-day">18</span>
-                            <span class="timeline-balloon-date-month">APR</span>
-                        </div>
-                        <div class="col-sm-6  timeline-item">
-                            <div class="row">
-                                <div class="col-sm-11">
-                                    <div class="timeline-panel credits">
-                                        <ul class="timeline-panel-ul">
-                                            <li><span class="importo">Mussum ipsum cacilds</span></li>
-                                            <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
-                                            <li>
-                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6  timeline-item">
-                            <div class="row">
-                                <div class="col-sm-offset-1 col-sm-11">
-                                    <div class="timeline-panel debits">
-                                        <ul class="timeline-panel-ul">
-                                            <li><span class="importo">Mussum ipsum cacilds</span></li>
-                                            <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
-                                            <li>
-                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--due -->
-                    <div class="row timeline-movement">
-                        <div class="timeline-badge">
-                            <span class="timeline-balloon-date-day">13</span>
-                            <span class="timeline-balloon-date-month">APR</span>
-                        </div>
-                        <div class="col-sm-offset-6 col-sm-6  timeline-item">
-                            <div class="row">
-                                <div class="col-sm-offset-1 col-sm-11">
-                                    <div class="timeline-panel debits">
-                                        <ul class="timeline-panel-ul">
-                                            <li><span class="importo">Mussum ipsum cacilds</span></li>
-                                            <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
-                                            <li>
-                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6  timeline-item">
-                            <div class="row">
-                                <div class="col-sm-11">
-                                    <div class="timeline-panel credits">
-                                        <ul class="timeline-panel-ul">
-                                            <li><span class="importo">Mussum ipsum cacilds</span></li>
-                                            <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
-                                            <li>
-                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row timeline-movement">
-                        <div class="timeline-badge">
-                            <span class="timeline-balloon-date-day">10</span>
-                            <span class="timeline-balloon-date-month">APR</span>
-                        </div>
-                        <div class="col-sm-offset-6 col-sm-6  timeline-item">
-                            <div class="row">
-                                <div class="col-sm-offset-1 col-sm-11">
-                                    <div class="timeline-panel debits">
-                                        <ul class="timeline-panel-ul">
-                                            <li><span class="importo">Mussum ipsum cacilds</span></li>
-                                            <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
-                                            <li>
-                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6  timeline-item">
-                            <div class="row">
-                                <div class="col-sm-11">
-                                    <div class="timeline-panel credits">
-                                        <ul class="timeline-panel-ul">
-                                            <li><span class="importo">Mussum ipsum cacilds</span></li>
-                                            <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
-                                            <li>
-                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="col-12 col-sm-6 col-lg-6" ng-repeat="item in laws | filter: query | orderBy: lawOrder:direction">
+
+                    <a class="thumbnail" href="#/leis/{{::item.id}}" tooltip-placement="top" uib-tooltip="{{::item.numeroProcesso}}" tooltip-trigger="'mouseenter'">
+                      <div class="caption">
+
+                          <span class="label label-info">{{::item.tipo.nome}}</span>
+                          <span class="label label-success">{{::item.situacaoSimplificada.nome}}</span>
+                          <span class="label label-warning"> {{::item.classe.nome || 'Sem Classificação'}}</span>
+
+                          <h3 style="text-transform:capitalize;">{{ ::item.numeroProcesso }}</h3>
+                          <h6 class="text-justify">
+                            {{ ::item.ementa | limitTo: 97}} ...
+                          </h6>
+                      </div>
+
+                    </a>
+
+                  </div>
                 </div>
-            </div>
+
+                <div class="row">
+                  <ul class="pager">
+                    <li><a ng-click="previous()">Previous</a></li>
+                    <li><a ng-click="next()">Next</a></li>
+                  </ul>
+                </div>
+
+              </div>
+
+            </uib-accordion>
+
+          </div>
         </div>
+        <!-- Fim Lado Direito -->
+
     </div>
 </div>
-<center>
-    <a href="#/politicos">&laquo; Voltar</a>
-</center>
-<br>
-<br>

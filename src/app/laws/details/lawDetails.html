@@ -1,20 +1,64 @@
+<br>
 <div class="col-md-12">
   <div class="container" ng-model="laws">
 
     <header ng-include="'app/components/navbar/navbar.html'"></header>
 
-      <div>
-          <h3>{{ ::law.title }}</h3>
-          <h3>Projeto de lei nº {{ ::law.projectLawNumber }}</h3>
-          <h3>{{ ::law.date }}</h3>
-          <div ng-bind-html="law.desc"></div>
+      <br>
+
+      <div class="row">
+        <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" ng-show="alert.show" close="close()">
+          {{alert.message}}
+        </div>
       </div>
 
-      <br />
-
-      <div class="panel-footer">
-        {{law.rating}}
+      <div class="row">
+        <span class="label label-info">{{::law.tipo.nome}}</span>
+        <span class="label label-success">{{::law.situacaoSimplificada.nome}}</span>
+        <span class="label label-warning"> {{law.classe.nome || 'Sem Classificação'}} </span>
       </div>
+
+      <br>
+
+      <div class="row">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+          aria-valuenow="{{law.relevancia}}" aria-valuemin="0" aria-valuemax="100" style="width:{{law.relevancia}}%">
+            {{law.relevancia}}% é a relevância desta lei
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <h5>Número do Processo {{ ::law.numeroProcesso }}</h5>
+        <h5>Número da Propositura {{ ::law.numeroPropositura }}</h5>
+        <h5>Autor <a href="#/politicos/{{::law.autor.id}}"> {{ ::law.autor.nome }} </a> - {{::law.autor.partidoPolitico.nome}} ({{::law.autor.partidoPolitico.sigla}})</h5>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <h3>{{law.ementa}} - Realize o <a href="{{::law.pdfLei}}" target="_blank"> download deste documento </a>.</h3>
+      </div>
+
+      <br>
+
+  <div class="row">
+    <!-- Rating Panel -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Vote na Relevância desta lei</h3>
+      </div>
+      <div class="panel-body">
+        <input-stars max="5" ng-model="law.rating" on-star-click="clickRating(law.rating)"></input-stars>
+        Quantidade de votos: {{law.quantidadeDeVotos || 0}}
+      </div>
+    </div>
+  </div>
+
+    <br />
 
   </div>
 </div>

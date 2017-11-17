@@ -1,9 +1,10 @@
 {
-  "name": "lawsApp",
-  "version": "0.0.0",
-  "dependencies": {},
-  "scripts": {
-    "test": "gulp test"
+  "name": "monitorlegislativosjc",
+  "description": "Monitor Legislativo da Cidade de São José dos Campos",
+  "version": "1.0.0",
+  "author": "Pedro HOS <pedro-hos@outlook.com>",
+  "bugs": {
+    "url": "https://github.com/sjcdigital/leis/issues"
   },
   "devDependencies": {
     "browser-sync": "~2.7.12",

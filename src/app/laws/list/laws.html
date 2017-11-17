@@ -8,34 +8,60 @@
         </div>
 
         <div class="well">
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="sizing-addon1">
-                <i class="glyphicon glyphicon-search"></i>
-                </span>
-                <input ng-model="query" placeholder="Pesquise por leis" autofocus type="text" class="form-control" aria-describedby="sizing-addon1">
-            </div>
+          <form class="form-horizontal" role="form" name="filtroForm" ng-submit="filtrar()">
+            <div class="controls form-inline">
+                  <div class="form-group">
+                      <label for="_tipo" class="col-sm-2 control-label">Tipo</label>
+                      <div class="col-sm-4">
+                          <select id="_tipo" class="form-control input-sm" ng-model="filtro.tipo" ng-options="tipo.nome for tipo in tipos track by tipo.id"></select>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="_situacao" class="col-sm-4 control-label">Situação</label>
+                      <div class="col-sm-4">
+                          <select id="_situacao" class="form-control input-sm" ng-model="filtro.situacao" ng-options="situacao.nome for situacao in situacoes track by situacao.id"></select>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="_clase" class="col-sm-4 control-label">Classificação</label>
+                      <div class="col-sm-4">
+                          <select id="_tipo" class="form-control input-sm" ng-model="filtro.classe" ng-options="classe.nome for classe in classes track by classe.id"></select>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-5">
+                          <button type="submit" class="btn btn-success">
+                              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                              Buscar
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </form>
         </div>
 
         <div class="row">
 
           <div class="col-12 col-sm-6 col-lg-6" ng-repeat="item in laws | filter: query | orderBy: lawOrder:direction">
 
-            <a class="thumbnail" href="#/leis/{{::item.code}}"
-              tooltip-placement="top" uib-tooltip="teste" tooltip-trigger="'mouseenter'">
+            <a class="thumbnail" href="#/leis/{{::item.id}}"
+              tooltip-placement="top" uib-tooltip="{{::item.numeroProcesso}}" tooltip-trigger="'mouseenter'">
               <div class="caption">
-                  {{::item.code}}
-                  <span class="label label-info">{{::item.type}}</span>
 
-                  <h3 style="text-transform:capitalize;">{{ ::item.title }}</h3>
+                <span class="label label-info">{{::item.tipo.nome}}</span>
+                <span class="label label-success">{{::item.situacaoSimplificada.nome}}</span>
+                <span class="label label-warning"> {{::item.classe.nome || 'Sem Classificação'}} </span>
+
+                  <h3 style="text-transform:capitalize;">{{ ::item.numeroProcesso }}</h3>
                   <h5 class="text-justify">
-                    {{ ::item.summary | limitTo: 97}} ...
+                    {{ ::item.ementa | limitTo: 97}} ...
                   </h5>
-                  <ul class="list-inline">
-                    <li ng-repeat="alderman in item.author">
-                      <strong>{{ ::alderman.name }}</strong>
-                    </li>
-                  </ul>
-                  <p><strong>{{ ::item.date }}</strong></p>
+                  <h5>
+                    {{::item.autor.nome}}
+                  </h5>
               </div>
 
             </a>

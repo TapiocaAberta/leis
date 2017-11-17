@@ -4,42 +4,42 @@
     angular.module('lawsApp')
         .controller('LawDetailsCtrl', function($scope, $http, $stateParams, URI) {
 
-          $scope.successVote = false;
-          $scope.errorVote   = false;
-          $scope.message     = '';
+          $scope.alert = {show : false, type : '', message : ''};
 
-          if ($stateParams.code) {
+          if ($stateParams.id) {
 
-            $http.get(URI + 'laws/' + $stateParams.code).success(function(data) {
-                $scope.law = data;
-            })
-            .error(function (error) {
+            $http.get(URI + 'leis/' + $stateParams.id).success(function(data) {
+              $scope.law = data;
+            }) .error(function(error) {
               console.log(error);
             });
-
           }
 
-          $scope.vote = function(url) {
+            $scope.clickRating = function(rating) {
+                if(Number.isInteger(rating)) {
+                    if (0 < rating && rating < 6) {
+                        $scope.vote(rating);
+                    }
+                }
+            };
 
-            $http.put(url).success(function(data) {
+            $scope.vote = function(rating) {
 
-              $scope.law         = data;
-              $scope.successVote = true;
-              $scope.message     = 'Voto computado!';
+              $http.put(URI + 'leis/' + $stateParams.id + '/vota?rating=' + rating).success(function(data) {
 
-            }).error(function (error) {
-              console.log(error);
-              $scope.errorVote   = true;
-              $scope.message     = error.message;
-            });
+                 $scope.law = data;
+                 $scope.alert = {show : true, type : 'success', message : 'Voto computado!'};
 
-          };
+              }) .error(function(error) {
+                console.log(error);
+                $scope.alert = {show : true, type : 'danger', message : error.mensagem};
+              });
+            };
 
-          $scope.hoveringOver = function(value) {
-            $scope.overStar = value;
-            $scope.percent = 100 * (value / $scope.max);
-          };
-
+            $scope.close = function() {
+              $scope.alert = {show : false, type : '', message : ''};
+              $scope.law.rating = 0;
+            };
 
         });
 })();
