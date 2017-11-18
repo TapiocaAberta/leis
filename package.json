@@ -2,7 +2,7 @@
   "name": "monitorlegislativosjc",
   "description": "Monitor Legislativo da Cidade de São José dos Campos",
   "version": "1.0.0",
-  "author": "Pedro HOS <pedro-hos@outlook.com>",
+  "author": "Pedro HOS <pedro-hos@outlook.com>;Paulo Luan <pauloluan.inova@gmail.com>",
   "bugs": {
     "url": "https://github.com/sjcdigital/leis/issues"
   },
@@ -53,7 +53,16 @@
     "wiredep": "~2.2.2",
     "wrench": "~1.5.8"
   },
-  "engines": {
-    "node": "5"
+  "homepage": "http://leis.sjcdigital.com",
+  "keywords": [
+    "laws",
+    "legislativo",
+    "leis",
+    "monitor"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjcdigital/leis.git"
   }
 }
