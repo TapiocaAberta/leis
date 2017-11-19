@@ -6,32 +6,34 @@
 
           if($stateParams.idItem) {
 
-            $scope.options = {
-              chart: {
-                  type: 'pieChart',
-                  height: 500,
-                  x: function(d){return d.key;},
-                  y: function(d){return d.y;},
-                  showLabels: true,
-                  duration: 500,
-                  labelThreshold: 0.01,
-                  labelSunbeamLayout: true,
-                  legend: {
-                      margin: {
-                          top: 5,
-                          right: 35,
-                          bottom: 5,
-                          left: 0
-                      }
-                  }
-              }
+            $scope.tipoChart = {
+                nomeChart: 'tipo_chart',
+                titulo: 'Por tipo de leis',
+                subtitle: 'Mostra a quantidade de leis agrupados por tipo'
             };
+
+            $scope.situacaoChart = {
+                nomeChart: 'situacao_chart',
+                titulo: 'Por situação da leis',
+                subtitle: 'Mostra a quantidade das leis agrupados por situação'
+            };
+
+            $scope.classificacao = {
+                nomeChart: 'classificacao_tipo',
+                titulo: 'Por classificação das leis',
+                subtitle: 'Mostra a quantidade das leis agrupados por situação'
+            };
+
+            Highcharts.setOptions({
+                lang: {
+            		      decimalPoint: ',',
+            		      thousandsSep: '.',
+            		      numericSymbols:  [ " mil" , " milhões" , " bilhões" , "T" , "P" , "E"]
+            		}
+            });
 
             var TOTAL_PG = 6;
             $scope.PG = 0;
-            $scope.lawTypeData = [];
-            $scope.lawSituationData = [];
-            $scope.lawClassData = [];
 
               $http.get(URI + 'autores/' + $stateParams.idItem)
               .success(function(data) {
@@ -42,20 +44,43 @@
 
               $http.get(URI + 'autores/' + $stateParams.idItem + '/grafico').success(function(data) {
 
-                buildDataChart(data.leisChart.tipo, $scope.lawTypeData);
-                buildDataChart(data.leisChart.situacao, $scope.lawSituationData);
-                buildDataChart(data.leisChart.classe, $scope.lawClassData);
+                buildDataChart(data.leisChart.tipo, $scope.tipoChart);
+                buildDataChart(data.leisChart.situacao, $scope.situacaoChart);
+                buildDataChart(data.leisChart.classe, $scope.classificacao);
 
               }).error(function(error) {
                   console.log(error);
               });
 
-              function buildDataChart(datas, dataChart) {
+              function buildDataChart(datas, chartProp) {
+
+                var categories = [];
+                var series = [];
 
                 angular.forEach(datas, function(value) {
-                  dataChart.push({key: value.label, y: value.valor});
+                  categories.push(value.label);
+                  series.push({data: [value.valor], name: value.label});
                 });
-
+                
+                Highcharts.chart(chartProp.nomeChart, {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: chartProp.titulo
+                    },
+                    subtitle: {
+                        text: chartProp.subtitle
+                    },
+                    xAxis: {categories: categories},
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Quantidade'
+                        }
+                    },
+                    series: series
+                  });
               };
 
               $http.get(URI + 'autores/' + $stateParams.idItem + '/leis?total='+TOTAL_PG+'&pg='+$scope.PG).success(function(data) {

@@ -20,8 +20,7 @@
     "bootstrap-sass-official": "~3.3.4",
     "fontawesome": "~4.3.0",
     "jquery": "~2.1.4",
-    "moment": "~2.10.3",
-    "angular-nvd3": "^1.0.9"
+    "moment": "~2.10.3"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"
