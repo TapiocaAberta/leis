@@ -32,13 +32,32 @@
                   </div>
 
                   <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-5">
-                          <button type="submit" class="btn btn-success">
-                              Buscar
-                          </button>
+                      <label for="_ano" class="col-sm-4 control-label">Ano</label>
+                      <div class="col-sm-4">
+                          <select id="_ano" class="form-control input-sm" ng-model="filtro.ano" ng-options="a.ano for a in anos.anos"></select>
                       </div>
                   </div>
               </div>
+
+              <br>
+              <div class="controls form-inline">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <button type="submit" class="btn btn-success">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <button ng-click="limpar()" class="btn btn-warning">
+                            Limpar
+                        </button>
+                    </div>
+                </div>
+
+            </div>
           </form>
         </div>
 
