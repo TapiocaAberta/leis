@@ -34,9 +34,9 @@
                     </div>
                 </div>
 
-                <div class="profile-userbuttons">
+                <div class="profile-userbuttons" ng-show="false">
                     <button type="button" class="btn btn-success">Seguir</button>
-                    <button type="button" class="btn btn-danger btn-sm" disabled>Mensagem</button>
+                    <button type="button" class="btn btn-danger btn-sm">Mensagem</button>
                 </div>
             </div>
         </div>
@@ -91,6 +91,53 @@
               <!-- fim div de graficos -->
 
               <div uib-accordion-group class="panel-default" heading="Projetos Propostos" is-open="false" is-disabled="false">
+
+                <form name="mainForm" class="form-horizontal" ng-submit="filtrar()">
+
+                    <div class="form-group">
+                      <label for="_tipo" class="col-sm-2 control-label">Tipo</label>
+                      <div class="col-sm-10">
+                          <select id="_tipo" class="form-control input-sm" ng-model="filtro.tipo" ng-options="tipo.nome for tipo in tipos track by tipo.id"></select>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="_clase" class="col-sm-2 control-label">Classificação</label>
+                      <div class="col-sm-10">
+                          <select id="_tipo" class="form-control input-sm" ng-model="filtro.classe" ng-options="classe.nome for classe in classes track by classe.id"></select>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="_situacao" class="col-sm-2 control-label">Situação</label>
+                      <div class="col-sm-10">
+                          <select id="_situacao" class="form-control input-sm" ng-model="filtro.situacao" ng-options="situacao.nome for situacao in situacoes track by situacao.id"></select>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="_ano" class="col-sm-2 control-label">Ano</label>
+                      <div class="col-sm-10">
+                          <select id="_ano" class="form-control input-sm" ng-model="filtro.ano" ng-options="a.ano for a in anos.anos"></select>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success" ng-disabled="mainForm.$invalid">
+                                Buscar
+                            </button>
+
+                            <button ng-click="limpar()" class="btn btn-warning" ng-disabled="mainForm.$invalid">
+                                Limpar
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                  </form>
 
                 <div id="timeline">
                   <div class="col-12 col-sm-6 col-lg-6" ng-repeat="item in laws | filter: query | orderBy: lawOrder:direction">

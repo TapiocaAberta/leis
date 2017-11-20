@@ -6,20 +6,20 @@
 
           $scope.tipoChart = {
               nomeChart: 'tipo_chart',
-              titulo: 'Por tipo de leis',
-              subtitle: 'Mostra a quantidade de leis agrupados por tipo'
+              titulo: 'Tipo x Quantidade',
+              subtitle: 'Mostra a quantidade de documentos agrupados por tipo'
           };
 
           $scope.situacaoChart = {
               nomeChart: 'situacao_chart',
-              titulo: 'Por situação da leis',
-              subtitle: 'Mostra a quantidade das leis agrupados por situação'
+              titulo: 'Situação x Quantidade',
+              subtitle: 'Mostra a quantidade de documentos agrupados por situação'
           };
 
           $scope.classificacao = {
               nomeChart: 'classificacao_tipo',
-              titulo: 'Por classificação das leis',
-              subtitle: 'Mostra a quantidade das leis agrupados por situação'
+              titulo: 'Classificação x Quantidade',
+              subtitle: 'Mostra a quantidade de documentos agrupados por situação'
           };
 
           Highcharts.setOptions({
@@ -34,21 +34,19 @@
 
             $scope.dataChart = data;
 
-            buildDataChart(data.tipo, $scope.tipoChart);
-            buildDataChart(data.situacao, $scope.situacaoChart);
-            buildDataChart(data.classe, $scope.classificacao);
+            buildDataChart(data.tipo, $scope.tipoChart, "Tipo");
+            buildDataChart(data.situacao, $scope.situacaoChart, "Situação");
+            buildDataChart(data.classe, $scope.classificacao, "Classificação");
 
           }).error(function(error) {
               console.log(error);
           });
 
-          function buildDataChart(datas, chartProp) {
+          function buildDataChart(datas, chartProp, categoria) {
 
-            var categories = [];
             var series = [];
 
             angular.forEach(datas, function(value) {
-              categories.push(value.label);
               series.push({data: [value.valor], name: value.label});
             });
 
@@ -62,7 +60,7 @@
                 subtitle: {
                     text: chartProp.subtitle
                 },
-                xAxis: {categories: categories},
+                xAxis: {categories: [categoria]},
                 yAxis: {
                     min: 0,
                     title: {

@@ -6,22 +6,29 @@
 
           if($stateParams.idItem) {
 
+            var TOTAL_PG = 6;
+            $scope.PG = 0;
+            $scope.filtro = {situacao:{}, classe:{}, tipo:{}, ano:null};
+
+            preecheForm();
+            getLawsAlderman()
+
             $scope.tipoChart = {
                 nomeChart: 'tipo_chart',
-                titulo: 'Por tipo de leis',
-                subtitle: 'Mostra a quantidade de leis agrupados por tipo'
+                titulo: 'Tipo x Quantidade',
+                subtitle: 'Mostra a quantidade de documentos agrupados por tipo'
             };
 
             $scope.situacaoChart = {
                 nomeChart: 'situacao_chart',
-                titulo: 'Por situação da leis',
-                subtitle: 'Mostra a quantidade das leis agrupados por situação'
+                titulo: 'Situação x Quantidade',
+                subtitle: 'Mostra a quantidade de documentos agrupados por situação'
             };
 
             $scope.classificacao = {
                 nomeChart: 'classificacao_tipo',
-                titulo: 'Por classificação das leis',
-                subtitle: 'Mostra a quantidade das leis agrupados por situação'
+                titulo: 'Classificação x Quantidade',
+                subtitle: 'Mostra a quantidade de documentos agrupados por situação'
             };
 
             Highcharts.setOptions({
@@ -32,36 +39,106 @@
             		}
             });
 
-            var TOTAL_PG = 6;
-            $scope.PG = 0;
-
-              $http.get(URI + 'autores/' + $stateParams.idItem)
+            $http.get(URI + 'autores/' + $stateParams.idItem)
               .success(function(data) {
                   $scope.politicians = data;
               }).error(function(error) {
                   console.log(error);
               });
 
-              $http.get(URI + 'autores/' + $stateParams.idItem + '/grafico').success(function(data) {
 
-                buildDataChart(data.leisChart.tipo, $scope.tipoChart);
-                buildDataChart(data.leisChart.situacao, $scope.situacaoChart);
-                buildDataChart(data.leisChart.classe, $scope.classificacao);
+              function getLawsAlderman() {
+
+                var URL = URI + 'leis/filtra?total=6&pg=' + $scope.PG + '&idAutor=' + $stateParams.idItem;
+
+                URL = (typeof $scope.filtro.situacao.id === 'undefined' || !$scope.filtro.situacao.id) ? URL : URL + '&idSituacao=' + $scope.filtro.situacao.id;
+                URL = (typeof $scope.filtro.classe.id === 'undefined' || !$scope.filtro.classe.id) ?  URL : URL + '&idClasse=' + $scope.filtro.classe.id;
+                URL = (typeof $scope.filtro.tipo.id === 'undefined' || !$scope.filtro.tipo.id) ? URL :  URL + '&idTipo=' + $scope.filtro.tipo.id;
+                URL = (typeof $scope.filtro.ano === 'undefined' || !$scope.filtro.ano) ?  URL : URL + '&ano=' + $scope.filtro.ano.ano;
+
+                $http.get(URL)
+                  .success(function(data) {
+                      $scope.laws = data;
+                }).error(function(error) {
+                      console.log(error);
+                });
+              }
+
+              $scope.filtrar = function() {
+                getLawsAlderman();
+              };
+
+              $scope.limpar = function() {
+                $scope.filtro = {situacao:{}, classe:{}, tipo:{}, ano:null};
+                getLawsAlderman();
+              };
+
+              $scope.next = function() {
+                $scope.PG+=1;
+                getLawsAlderman();
+              };
+
+              $scope.previous = function() {
+                if($scope.PG !==0) {
+                  $scope.PG -=1;
+                  getLawsAlderman();
+                }
+              };
+
+            $http.get(URI + 'autores/' + $stateParams.idItem + '/grafico').success(function(data) {
+
+                buildDataChart(data.leisChart.tipo, $scope.tipoChart, "Tipo");
+                buildDataChart(data.leisChart.situacao, $scope.situacaoChart, "Situação");
+                buildDataChart(data.leisChart.classe, $scope.classificacao, "Classificação");
 
               }).error(function(error) {
                   console.log(error);
               });
 
-              function buildDataChart(datas, chartProp) {
+              function preecheForm() {
 
-                var categories = [];
+                $http.get(URI + 'leis/anos?idAutor=' +  $stateParams.idItem)
+                        .success(function(data) {
+                            $scope.anos = data;
+                        })
+                        .error(function(error) {
+                            console.log(error);
+                });
+
+                $http.get(URI + 'tipo')
+                        .success(function(data) {
+                            $scope.tipos = data;
+                        })
+                        .error(function(error) {
+                            console.log(error);
+                });
+
+                $http.get(URI + 'situacao-simplificada')
+                        .success(function(data) {
+                            $scope.situacoes = data;
+                        })
+                        .error(function(error) {
+                            console.log(error);
+                });
+
+                $http.get(URI + 'classe')
+                        .success(function(data) {
+                            $scope.classes = data;
+                        })
+                        .error(function(error) {
+                            console.log(error);
+                });
+
+              }
+
+              function buildDataChart(datas, chartProp, categoria) {
+
                 var series = [];
 
                 angular.forEach(datas, function(value) {
-                  categories.push(value.label);
                   series.push({data: [value.valor], name: value.label});
                 });
-                
+
                 Highcharts.chart(chartProp.nomeChart, {
                     chart: {
                         type: 'column'
@@ -72,7 +149,7 @@
                     subtitle: {
                         text: chartProp.subtitle
                     },
-                    xAxis: {categories: categories},
+                    xAxis: {categories: [categoria]},
                     yAxis: {
                         min: 0,
                         title: {
@@ -83,31 +160,6 @@
                   });
               };
 
-              $http.get(URI + 'autores/' + $stateParams.idItem + '/leis?total='+TOTAL_PG+'&pg='+$scope.PG).success(function(data) {
-                  $scope.laws = data;
-              }).error(function(error) {
-                  console.log(error);
-              });
-
-              $scope.next = function() {
-                $scope.PG = $scope.PG + 1;
-                $http.get(URI + 'autores/' + $stateParams.idItem + '/leis?total='+TOTAL_PG+'&pg='+$scope.PG).success(function(data) {
-                    $scope.laws = data;
-                }).error(function(error) {
-                    console.log(error);
-                });
-              };
-
-              $scope.previous = function() {
-                if($scope.PG !== 0) {
-                  $scope.PG = $scope.PG - 1;
-                  $http.get(URI + 'autores/' + $stateParams.idItem + '/leis?total='+TOTAL_PG+'&pg='+$scope.PG).success(function(data) {
-                      $scope.laws = data;
-                  }).error(function(error) {
-                      console.log(error);
-                  });
-                }
-              };
           };
 
         });
