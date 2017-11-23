@@ -45,52 +45,55 @@
         <div class="col-md-9">
           <div class="profile-content">
 
-            <uib-accordion close-others="oneAtATime">
+            <uib-tabset active="active">
+              <uib-tab index="0" heading="Gráficos">
 
-              <div uib-accordion-group class="panel-default" heading="Gráficos" is-open="false" is-disabled="false">
+                <br>
 
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Por Tipo</div>
+                            <div class="panel-body">
+                                <div id="{{tipoChart.nomeChart}}">Placeholder for chart</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div class="panel panel-default">
-                              <div class="panel-heading">Por Tipo</div>
-                              <div class="panel-body">
-                                  <div id="{{tipoChart.nomeChart}}">Placeholder for chart</div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                <br>
 
-                  <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Por Situação</div>
+                            <div class="panel-body">
+                                <div id="{{situacaoChart.nomeChart}}">Placeholder for chart</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div class="panel panel-default">
-                              <div class="panel-heading">Por Situação</div>
-                              <div class="panel-body">
-                                  <div id="{{situacaoChart.nomeChart}}">Placeholder for chart</div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                <br>
 
-                  <br>
+                <br>
 
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div class="panel panel-default">
-                              <div class="panel-heading">Por Classificação</div>
-                              <div class="panel-body">
-                                  <div id="{{classificacao.nomeChart}}">Placeholder for chart</div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Por Classificação</div>
+                            <div class="panel-body">
+                                <div id="{{classificacao.nomeChart}}">Placeholder for chart</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-              <!-- fim div de graficos -->
+              </uib-tab>
 
-              <div uib-accordion-group class="panel-default" heading="Projetos Propostos" is-open="false" is-disabled="false">
+              <uib-tab index="1" heading="Projetos">
+
+                <br>
 
                 <form name="mainForm" class="form-horizontal" ng-submit="filtrar()">
 
@@ -139,7 +142,7 @@
 
                   </form>
 
-                <div id="timeline">
+                <div class="row">
                   <div class="col-12 col-sm-6 col-lg-6" ng-repeat="item in laws | filter: query | orderBy: lawOrder:direction">
 
                     <a class="thumbnail" href="#/leis/{{::item.id}}" tooltip-placement="top" uib-tooltip="{{::item.numeroProcesso}}" tooltip-trigger="'mouseenter'">
@@ -161,19 +164,21 @@
                 </div>
 
                 <div class="row">
-                  <ul class="pager">
-                    <li><a ng-click="previous()">Previous</a></li>
-                    <li><a ng-click="next()">Next</a></li>
-                  </ul>
+                  <div class="i-am-centered">
+                    <ul uib-pagination last-text="Último" next-text='Próximo' first-text='Primeiro' previous-text='Anterior'
+                                       total-items="totalItens"
+                                       items-per-page='totalPorPg'
+                                       ng-model="pgAtual"
+                                       max-size="10" class="pagination-sm" boundary-links="true" ng-change="pageChanged(pgAtual)"></ul>
+                  </div>
+
                 </div>
+              </uib-tab>
 
-              </div>
-
-            </uib-accordion>
+            </uib-tabset>
 
           </div>
         </div>
         <!-- Fim Lado Direito -->
-
     </div>
 </div>

@@ -88,10 +88,13 @@
         </div>
 
         <div class="row">
-          <ul class="pager">
-            <li><a ng-click="previous(_links.prev.href)">Previous</a></li>
-            <li><a ng-click="next(_links.next.href)">Next</a></li>
-          </ul>
+          <div class="i-am-centered">
+            <ul uib-pagination last-text="Último" next-text='Próximo' first-text='Primeiro' previous-text='Anterior'
+                               total-items="totalItens"
+                               items-per-page='totalPorPg'
+                               ng-model="pgAtual"
+                               max-size="10" class="pagination-sm" boundary-links="true" ng-change="pageChanged()"></ul>
+          </div>
         </div>
 
     </div>

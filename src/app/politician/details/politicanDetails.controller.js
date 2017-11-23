@@ -2,16 +2,16 @@
     'use strict';
 
     angular.module('lawsApp')
-        .controller('PoliticanDetailsCtrl', function($scope, $http, $stateParams, URI) {
+        .controller('PoliticanDetailsCtrl', function($scope, $http, $stateParams, URI, TOTAL_ITENS) {
 
           if($stateParams.idItem) {
 
-            var TOTAL_PG = 6;
-            $scope.PG = 0;
+            $scope.totalPorPg = 10;
             $scope.filtro = {situacao:{}, classe:{}, tipo:{}, ano:null};
 
-            preecheForm();
             getLawsAlderman()
+            preecheForm();
+
 
             $scope.tipoChart = {
                 nomeChart: 'tipo_chart',
@@ -46,10 +46,11 @@
                   console.log(error);
               });
 
+            function getLawsAlderman(pgAtual) {
 
-              function getLawsAlderman() {
+                pgAtual = (typeof pgAtual === 'undefined' || !pgAtual) ? 1 : pgAtual;
 
-                var URL = URI + 'leis/filtra?total=6&pg=' + $scope.PG + '&idAutor=' + $stateParams.idItem;
+                var URL = URI + 'leis/filtra?total='+ $scope.totalPorPg + '&pg=' + (pgAtual - 1) + '&idAutor=' + $stateParams.idItem;
 
                 URL = (typeof $scope.filtro.situacao.id === 'undefined' || !$scope.filtro.situacao.id) ? URL : URL + '&idSituacao=' + $scope.filtro.situacao.id;
                 URL = (typeof $scope.filtro.classe.id === 'undefined' || !$scope.filtro.classe.id) ?  URL : URL + '&idClasse=' + $scope.filtro.classe.id;
@@ -57,12 +58,13 @@
                 URL = (typeof $scope.filtro.ano === 'undefined' || !$scope.filtro.ano) ?  URL : URL + '&ano=' + $scope.filtro.ano.ano;
 
                 $http.get(URL)
-                  .success(function(data) {
+                  .success(function(data, status, headers) {
                       $scope.laws = data;
-                }).error(function(error) {
+                      $scope.totalItens = headers(TOTAL_ITENS);
+                }).error(function(error, status, headers) {
                       console.log(error);
                 });
-              }
+              };
 
               $scope.filtrar = function() {
                 getLawsAlderman();
@@ -73,16 +75,8 @@
                 getLawsAlderman();
               };
 
-              $scope.next = function() {
-                $scope.PG+=1;
-                getLawsAlderman();
-              };
-
-              $scope.previous = function() {
-                if($scope.PG !==0) {
-                  $scope.PG -=1;
-                  getLawsAlderman();
-                }
+              $scope.pageChanged = function(pgAtual) {
+                getLawsAlderman(pgAtual);
               };
 
             $http.get(URI + 'autores/' + $stateParams.idItem + '/grafico').success(function(data) {
@@ -160,6 +154,8 @@
                   });
               };
 
+          }  else {
+            console.log("tratar");
           };
 
         });

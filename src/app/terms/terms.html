@@ -1,0 +1,63 @@
+<div class="col-md-12">
+
+    <br>
+
+    <div class="container">
+        <header ng-include="'app/components/navbar/navbar.html'"></header>
+
+        <div class="row">
+            <div class="col-md-12">
+
+              <table class="table table-hover">
+                <caption>Termos Tipos</caption>
+                <thead>
+                  <tr>
+                    <th>Termo</th>
+                    <th>Descrição</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="tipo in tipos">
+                    <td>{{::tipo.nome}}</td>
+                    <td>{{::tipo.descricao}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table class="table table-hover">
+                <caption>Termos Situação</caption>
+                <thead>
+                  <tr>
+                    <th>Termo</th>
+                    <th>Descrição</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="situacao in situacoes">
+                    <td>{{::situacao.nome}}</td>
+                    <td>{{::situacao.descricao}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table class="table table-hover">
+                <caption>Termos Classificação</caption>
+                <thead>
+                  <tr>
+                    <th>Termo</th>
+                    <th>Descrição</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="classe in classes">
+                    <td>{{::classe.nome}}</td>
+                    <td>{{::classe.descricao}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -2,9 +2,10 @@
     'use strict';
 
     angular.module('lawsApp')
-        .controller('LawsCtrl', function($scope, $http, $stateParams, URI) {
+        .controller('LawsCtrl', function($scope, $http, $stateParams, URI, TOTAL_ITENS) {
 
-            $scope.PG = 0;
+            $scope.totalPorPg = 10;
+            $scope.pgAtual = 1;
             $scope.direction = 'desc';
             $scope.filtro = {situacao:{}, classe:{}, tipo:{}, ano:null};
 
@@ -49,7 +50,7 @@
 
             function getLaws() {
 
-              var URL = URI + 'leis/filtra?total=6&pg=' + $scope.PG;
+              var URL = URI + 'leis/filtra?total='+ $scope.totalPorPg + '&pg=' + ($scope.pgAtual - 1);
 
               URL = (typeof $scope.filtro.situacao.id === 'undefined' || !$scope.filtro.situacao.id) ? URL : URL + '&idSituacao=' + $scope.filtro.situacao.id;
               URL = (typeof $scope.filtro.classe.id === 'undefined' || !$scope.filtro.classe.id) ?  URL : URL + '&idClasse=' + $scope.filtro.classe.id;
@@ -57,11 +58,12 @@
               URL = (typeof $scope.filtro.ano === 'undefined' || !$scope.filtro.ano) ?  URL : URL + '&ano=' + $scope.filtro.ano.ano;
 
               $http.get(URL)
-                      .success(function(data) {
+                      .success(function(data, status, headers) {
                           $scope.laws = data;
+                          $scope.totalItens = headers(TOTAL_ITENS);
                           $scope.lawOrder = 'id';
                       })
-                      .error(function(error) {
+                      .error(function(error, status, headers) {
                           console.log(error);
               });
             }
@@ -75,16 +77,8 @@
               getLaws();
             };
 
-            $scope.next = function() {
-              $scope.PG+=1;
+            $scope.pageChanged = function() {
               getLaws();
-            };
-
-            $scope.previous = function() {
-              if($scope.PG !==0) {
-                $scope.PG -=1;
-                getLaws();
-              }
             };
 
         });

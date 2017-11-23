@@ -5,6 +5,7 @@
     angular
         .module('lawsApp')
         .constant('moment', moment)
+        .constant('TOTAL_ITENS', 'TOTAL_ITENS')
         //.constant('URI', 'http://localhost:8080/api/v2/');
         .constant('URI', 'http://104.131.106.85:8080/api/v2/');
 })();
