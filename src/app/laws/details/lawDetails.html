@@ -13,9 +13,25 @@
       </div>
 
       <div class="row">
-        <span class="label label-info">{{::law.tipo.nome}}</span>
-        <span class="label label-success">{{::law.situacaoSimplificada.nome}}</span>
-        <span class="label label-warning"> {{law.classe.nome || 'Sem Classificação'}} </span>
+        <div class="col-md-6">
+          <span class="label label-info">{{::law.tipo.nome}}</span>
+          <span class="label label-success">{{::law.situacaoSimplificada.nome}}</span>
+          <span class="label label-warning"> {{law.classe.nome || 'Sem Classificação'}} </span>
+        </div>
+
+        <div class="col-md-6">
+          <div class="fb-share-button" data-href="http://leis.sjcdigital.com/#/leis/{{law.id}}" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+            <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F%23%2Fleis%2F32&amp;src=sdkpreparse">
+              Compartilhar
+            </a>
+
+            <a href="https://twitter.com/share" class="twitter-share-button"
+              data-via="MonitorLegSJC" data-size="small" data-hashtags="monitorLegislativoSJC" data-text="Veja está proposta do(a) {{law.autor.nome}} de São José dos Campos">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+          </div>
+        </div>
+
       </div>
 
       <br>
