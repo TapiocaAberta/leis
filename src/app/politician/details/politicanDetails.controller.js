@@ -45,7 +45,21 @@
               }).error(function(error) {
                   console.log(error);
               });
-
+              
+             $http.get(URI + 'presenca/vereador/' + $stateParams.idItem)
+              .success(function(data) {
+                  $scope.presencas = data;
+                  $scope.sessoesComFalta = [];
+                  $scope.totalSessoes = 0;
+                  for(var i in data) {
+                      $scope.totalSessoes++;
+                      if(!data[i]) {
+                        $scope.sessoesComFalta.push(i);
+                      }
+                  }
+              }).error(function(error) {
+                  console.log(error);
+              });
             function getLawsAlderman(pgAtual) {
 
                 pgAtual = (typeof pgAtual === 'undefined' || !pgAtual) ? 1 : pgAtual;

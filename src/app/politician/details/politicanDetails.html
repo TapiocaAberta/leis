@@ -32,6 +32,13 @@
                     <div class="profile-usertitle-job">
                         Quantidade de projetos propostos: {{politicians.quantidadeDeLeis}}
                     </div>
+                    <div class="profile-usertitle-job" ng-if="sessoesComFalta.length > 0">
+                        Faltou em {{sessoesComFalta.length}} sessões da câmara   
+                    </div>  
+                    <div class="profile-usertitle-job" ng-if="sessoesComFalta.length < 0">
+                        Não faltou em nenhuma sessão da câmara   
+                    </div>                                          
+               
                 </div>
 
                 <div class="profile-userbuttons">
@@ -181,6 +188,32 @@
                   </div>
 
                 </div>
+              </uib-tab>
+              
+              <uib-tab index="2" heading="Presença">
+                  <div class="row">
+                        <br />
+                      <div class="i-am-centered"  ng-if="sessoesComFalta.length > 0">
+                        <h4>Vereador {{politicians.nome}} faltou em {{sessoesComFalta.length}} do total de {{ totalSessoes }} sessões.</h4>
+                        <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th>Sessões com falta</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="sessao in sessoesComFalta">
+                                  <td>{{sessao}}</td>
+                              </tr>
+                        </table>      
+
+                      </div>
+                      <div class="i-am-centered"  ng-if="sessoesComFalta.length == 0">
+                          <h4>Vereador {{politicians.nome}} não faltou em nenhuma sessão! </h4>
+                      </div>
+                      
+                      
+                  </div>
               </uib-tab>
 
             </uib-tabset>
